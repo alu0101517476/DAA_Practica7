@@ -1,5 +1,17 @@
 #include "../include/Problema.h"
 
+std::vector<int> Problema::getTiempoProcesamientoTareas() {
+  return tiempo_procesamiento_tareas_;
+}
+
+std::vector<std::vector<int>> Problema::getTiemposSetup() {
+  return tiempos_setup_;
+}
+
+std::vector<std::vector<int>> Problema::getValoresArcos() {
+  return valores_arcos_;
+}
+
 Problema::Problema(const std::string& nombre_fichero) {
   std::ifstream fichero_problema{nombre_fichero, std::ios::in};
   if (fichero_problema.fail()) {
@@ -40,6 +52,14 @@ Problema::Problema(const std::string& nombre_fichero) {
     std::istringstream tiempo_setup(linea);
     for (int j = 0; j <= numero_tareas_; ++j) {
       tiempo_setup >> tiempos_setup_[i][j];
+    }
+  }
+  valores_arcos_ = aux;
+  // Calculamos los valores de los arcos
+  for (size_t i = 0; i < tiempos_setup_.size(); ++i) {
+    for (size_t j = 0; j < tiempos_setup_[i].size(); ++j) {
+      // Calcula tij directamente para todas las transiciones
+      valores_arcos_[i][j] = tiempos_setup_[i][j] + tiempo_procesamiento_tareas_[j];  // Acceso directo a pj con j
     }
   }
 }
