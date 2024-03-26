@@ -7,6 +7,7 @@
 #include "../include/Solucion.h"
 
 int main() { 
-  Problema problema{"PMSP/I40j_2m_S1_1.txt"};
+  AlgoritmoVoraz voraz{"PMSP/I40j_2m_S1_1.txt"};
+  std::cout << voraz.resolver() << std::endl;
   return 0; 
 }
