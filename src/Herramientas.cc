@@ -47,3 +47,11 @@ int calcularIncrementoTCT(Solucion& solucion, int maquina, int tarea,
   }
   return incremento_tct;
 }
+
+/**
+ * @brief Función que imprime por pantalla la ayuda del programa
+ */
+void ayuda() {
+  std::cout << "El uso del programa es el siguiente: " << std::endl;
+  std::cout << "./TCT ruta de la instancia del problema" << std::endl;
+}

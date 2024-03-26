@@ -6,8 +6,13 @@
 #include "../include/Problema.h"
 #include "../include/Solucion.h"
 
-int main() { 
-  AlgoritmoVoraz voraz{"PMSP/I40j_2m_S1_1.txt"};
+int main(int argc, char* argv[]) { 
+  if (argc != 2) {
+    std::cerr << "Error: número de argumentos incorrecto" << std::endl;
+    ayuda();
+    return 1;
+  }
+  AlgoritmoVoraz voraz{std::string(argv[1])};
   std::cout << voraz.resolver() << std::endl;
   return 0; 
 }
