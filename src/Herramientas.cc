@@ -42,7 +42,7 @@ int calcularIncrementoTCT(Solucion& solucion, int maquina, int tarea,
                                    [solucion[maquina][posicion]];
   } else {
     if (!solucion[maquina].empty()) {
-      incremento_tct += tiempos_setup[solucion[maquina].size() - 1][tarea];
+      incremento_tct += tiempos_setup[solucion[maquina].back()][tarea];
     }
   }
   return incremento_tct;

@@ -10,7 +10,8 @@
 class AlgoritmoVoraz : public Algoritmo {
  public:
   AlgoritmoVoraz(const std::string& nombre_problema)
-      : problema_{nombre_problema}, solucion_algoritmo_{} {};
+      : problema_{nombre_problema},
+        solucion_algoritmo_{problema_.getNumeroMaquinas()} {};
 
   Solucion resolver();
 

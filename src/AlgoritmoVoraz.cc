@@ -4,9 +4,11 @@ Solucion AlgoritmoVoraz::resolver() {
   int numero_maquinas{problema_.getNumeroMaquinas()},
       numero_tareas{problema_.getNumeroTareas()};
   // Seleccionamos las m tareas con menores valores de t0j
+  std::cout << solucion_algoritmo_.getSolucion().size() << std::endl;
   for (int j{0}; j < numero_maquinas; ++j) {
     solucion_algoritmo_.agregarTarea(j, problema_.getValoresArcos()[0][j]);
   }
+  
   // Creamos un vector para saber que tareas están asignadas
   std::vector<bool> tareas_asignadas(numero_tareas, false);
   // Marcamos las tareas iniciales como asignadas en el vector de tareas
@@ -37,10 +39,11 @@ Solucion AlgoritmoVoraz::resolver() {
       }
       // Insertamos la tarea en la mejor máquina y en la mejor posición
       // encontrada
-      solucion_algoritmo_[maquina_optima].insert(
-          solucion_algoritmo_[maquina_optima].begin() + posicion_optima, tarea);
+      std::vector<int>::iterator it = solucion_algoritmo_[maquina_optima].begin();
+      solucion_algoritmo_[maquina_optima].insert(it + posicion_optima, tarea);
       // Asignamos la tarea que hemos colocado 
       tareas_asignadas[tarea] = true;
     }
   }
+  return solucion_algoritmo_;
 }
