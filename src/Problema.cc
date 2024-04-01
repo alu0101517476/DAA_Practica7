@@ -12,6 +12,12 @@ std::vector<std::vector<int>> Problema::getValoresArcos() {
   return valores_arcos_;
 }
 
+std::vector<std::pair<int, int>> Problema::getT0jTareas() { return t0j_tareas_; }
+
+int Problema::getNumeroMaquinas() { return numero_maquinas_; }
+  
+int Problema::getNumeroTareas() { return numero_tareas_; }
+
 Problema::Problema(const std::string& nombre_fichero) {
   std::ifstream fichero_problema{nombre_fichero, std::ios::in};
   if (fichero_problema.fail()) {
@@ -61,8 +67,12 @@ Problema::Problema(const std::string& nombre_fichero) {
     for (size_t j = 0; j < tiempos_setup_[i].size(); ++j) {
       // Calcula tij directamente para todas las transiciones
       valores_arcos_[i][j] = tiempos_setup_[i][j] + tiempo_procesamiento_tareas_[j];  // Acceso directo a pj con j
+      if (i == 0) { 
+        t0j_tareas_.emplace_back(std::pair<int, int>{valores_arcos_[i][j], j});
+      }
     }
   }
+  std::sort(t0j_tareas_.begin(), t0j_tareas_.end());
 }
 
 std::ostream& operator<<(std::ostream& os, const Problema& problema) {

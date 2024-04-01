@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include <sstream>
+#include <algorithm>
 
 class Problema {
  public:
@@ -12,8 +13,9 @@ class Problema {
   std::vector<int> getTiempoProcesamientoTareas();
   std::vector<std::vector<int>> getTiemposSetup();
   std::vector<std::vector<int>> getValoresArcos();
-  int getNumeroMaquinas() { return numero_maquinas_; }
-  int getNumeroTareas() { return numero_tareas_; }
+  std::vector<std::pair<int, int>> getT0jTareas();
+  int getNumeroMaquinas();
+  int getNumeroTareas();
   // Sobrecarga de operador << para poder imprimir el problema
   friend std::ostream& operator<<(std::ostream& os, const Problema& problema);
 
@@ -23,6 +25,7 @@ class Problema {
   std::vector<int> tiempo_procesamiento_tareas_; // pj
   std::vector<std::vector<int>> tiempos_setup_; // sij
   std::vector<std::vector<int>> valores_arcos_; // tij
+  std::vector<std::pair<int, int>> t0j_tareas_; // t0j
 };
 
 std::ostream& operator<<(std::ostream& os, const Problema& problema);

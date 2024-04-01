@@ -21,12 +21,11 @@ int AlgoritmoVoraz::calcularTCTTotal() {
 
 
 Solucion AlgoritmoVoraz::resolver() {
-  std::cout << "SOLUCION: " << solucion_algoritmo_ << std::endl;
   int numero_maquinas{problema_.getNumeroMaquinas()},
       numero_tareas{problema_.getNumeroTareas()};
   // Seleccionamos las m tareas con menores valores de t0j
-  for (int j{0}; j < numero_maquinas; ++j) {
-    solucion_algoritmo_.agregarTarea(j, problema_.getValoresArcos()[0][j]);
+  for (int j{0}; j < numero_maquinas && j < problema_.getT0jTareas().size(); ++j) {
+    solucion_algoritmo_.agregarTarea(j, problema_.getT0jTareas()[j].second);
   }
   
   // Creamos un vector para saber que tareas están asignadas
@@ -39,7 +38,6 @@ Solucion AlgoritmoVoraz::resolver() {
     }
   }
   // Iteramos sobre todas las tareas para asignarlas
-  std::cout << "NUMERO TAREAS: " << numero_tareas << std::endl;
   for (int tarea{0}; tarea < numero_tareas; ++tarea) {
     if (!tareas_asignadas[tarea]) {  // Si la tarea no está asignada
       int incremento_minimo{INT_MAX}, maquina_optima, posicion_optima, tarea_asignada;
