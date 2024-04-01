@@ -12,8 +12,6 @@ std::vector<std::vector<int>> Problema::getValoresArcos() {
   return valores_arcos_;
 }
 
-std::vector<std::pair<int, int>> Problema::getT0jTareas() { return t0j_tareas_; }
-
 int Problema::getNumeroMaquinas() { return numero_maquinas_; }
   
 int Problema::getNumeroTareas() { return numero_tareas_; }
