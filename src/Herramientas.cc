@@ -26,8 +26,7 @@ int calcularIncrementoTCT(Solucion& solucion, int maquina, int tarea,
     tiempo_setup_inicial =
         tiempos_setup[solucion[maquina][posicion - 1]][tarea];
   }
-  // Sumamos el tiempo de setup de la tarea con el tiempo de procesamiento de la
-  // tarea y lo almacenamos en la variable "incremento_tct"
+  // Sumamos el tiempo de setup de la tarea con el tiempo de procesamiento de la tarea 
   incremento_tct += tiempo_setup_inicial + procesamiento_tareas[tarea];
   if (posicion < numero_tareas) {
     // Calcula el tiempo de setup necesario para cambiar de la nueva tarea

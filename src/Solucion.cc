@@ -19,7 +19,7 @@ std::ostream& operator<<(std::ostream& os, const Solucion& solucion) {
   for (int i{0}; i < solucion.solucion_.first.size(); ++i) {
     os << i << ": ";
     for (const auto& tarea : solucion.solucion_.first[i]) {
-      os << tarea << " | ";
+      if (tarea != 0) os << tarea << " | ";
     }
     os << std::endl;
   }

@@ -13,7 +13,6 @@ int main(int argc, char* argv[]) {
     return 1;
   }
   AlgoritmoVoraz voraz{std::string(argv[1])};
-  std::cout << voraz.getProblema() << std::endl;
   std::cout << voraz.resolver() << std::endl;
   return 0; 
 }
