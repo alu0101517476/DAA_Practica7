@@ -12,40 +12,24 @@
  * @param tiempos_setup matriz que contiene los tiempos de setup
  * @return int, el incremento del TCT 
  */
-int calcularIncrementoTCT(Solucion& solucion, int maquina, int tarea,
-                          int posicion, std::vector<int> procesamiento_tareas,
-                          std::vector<std::vector<int>> tiempos_setup) {
-  int incremento_tct{0}, numero_tareas{solucion[maquina].size()};
-  int tiempo_setup_inicial;
-  if (posicion == 0) {
-    // Igualamos la variable con con el tiempo de setup desde el estado inicial
-    // hasta la tarea nueva
-    tiempo_setup_inicial = tiempos_setup[0][tarea];
-  } else {
-    // Igualamos la variable con el tiempo de la tarea anterior a la tarea nueva
-    tiempo_setup_inicial =
-        tiempos_setup[solucion[maquina][posicion - 1]][tarea];
+int calcularTCTMaquina(const std::vector<int>& maquina, const std::vector<std::vector<int>>& valores_arcos) {
+  int resultado{0};
+  for (int i{1}; i < maquina.size(); ++i) {
+    int trabajo{0};
+    trabajo += valores_arcos[maquina[i - 1]][maquina[i]];
+    trabajo *= maquina.size() - i;
+    resultado += trabajo;
   }
-  // Sumamos el tiempo de setup de la tarea con el tiempo de procesamiento de la tarea 
-  incremento_tct += tiempo_setup_inicial + procesamiento_tareas[tarea];
-  if (posicion < numero_tareas) {
-    // Calcula el tiempo de setup necesario para cambiar de la nueva tarea
-    // insertada a la siguiente tarea en la secuencia.
-    int tiempo_setup_siguiente =
-        tiempos_setup[tarea][solucion[maquina][posicion]];
-    // Restamos el tiempo de setup actual, con el tiempo de setup de dos tareas
-    // que no están actualmente conectadas, que son la tarea anterior a la que
-    // queremos insertar y la posterior
-    incremento_tct += tiempo_setup_siguiente -
-                      tiempos_setup[solucion[maquina][posicion - 1]]
-                                   [solucion[maquina][posicion]];
-  } else {
-    if (!solucion[maquina].empty()) {
-      incremento_tct += tiempos_setup[solucion[maquina].back()][tarea];
-    }
-  }
-  return incremento_tct;
+  return resultado;
 }
+
+int calcularTCTOptimo(int maquina, int posicion, int tarea, Solucion& solucion_algoritmo, const std::vector<std::vector<int>>& valores_arcos) {
+  std::vector<int> auxiliar_tarea{solucion_algoritmo.getSolucion().first[maquina]};
+  auxiliar_tarea.emplace(auxiliar_tarea.begin() + posicion + 1, tarea);
+  int tct_resultado{calcularTCTMaquina(auxiliar_tarea, valores_arcos)};
+  return tct_resultado;
+}
+
 
 /**
  * @brief Función que imprime por pantalla la ayuda del programa

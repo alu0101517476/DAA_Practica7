@@ -45,6 +45,7 @@ Problema::Problema(const std::string& nombre_fichero) {
   linea_aux.clear();
   linea_aux << linea;
   int procesamiento_tarea;
+  tiempo_procesamiento_tareas_.emplace_back(0);
   while (linea_aux >> procesamiento_tarea) {
     tiempo_procesamiento_tareas_.emplace_back(procesamiento_tarea);
   }
