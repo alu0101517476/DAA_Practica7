@@ -30,7 +30,6 @@ int calcularTCTOptimo(int maquina, int posicion, int tarea, Solucion& solucion_a
   return tct_resultado;
 }
 
-
 /**
  * @brief Función que imprime por pantalla la ayuda del programa
  */
