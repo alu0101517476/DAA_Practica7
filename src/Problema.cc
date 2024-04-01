@@ -68,12 +68,8 @@ Problema::Problema(const std::string& nombre_fichero) {
     for (size_t j = 0; j < tiempos_setup_[i].size(); ++j) {
       // Calcula tij directamente para todas las transiciones
       valores_arcos_[i][j] = tiempos_setup_[i][j] + tiempo_procesamiento_tareas_[j];  // Acceso directo a pj con j
-      if (i == 0) { 
-        t0j_tareas_.emplace_back(std::pair<int, int>{valores_arcos_[i][j], j});
-      }
     }
   }
-  std::sort(t0j_tareas_.begin(), t0j_tareas_.end());
 }
 
 std::ostream& operator<<(std::ostream& os, const Problema& problema) {
