@@ -10,7 +10,10 @@ class Solucion {
   Solucion(const int& numero_maquinas);
   void agregarTarea(int indice_maquina, int tarea);
   // getters
-  std::vector<std::vector<int>>& getSolucion() { return solucion_; }
+  std::pair<std::vector<std::vector<int>>, int>& getSolucion() { return solucion_; }
+  int getCosteTotal() { return solucion_.second; }
+  // setter de coste total
+  void setCosteTotal(int coste_total) { solucion_.second = coste_total; }
   // Sobrecarga de operador [] para poder acceder al segundo vector más
   // cómodamente
   std::vector<int>& operator[](const int& indice);
@@ -18,7 +21,7 @@ class Solucion {
   friend std::ostream& operator<<(std::ostream& os, const Solucion& Solucion);
 
  private:
-  std::vector<std::vector<int>> solucion_;
+  std::pair<std::vector<std::vector<int>>, int> solucion_;
 };
 
 std::ostream& operator<<(std::ostream& os, const Solucion& Solucion);

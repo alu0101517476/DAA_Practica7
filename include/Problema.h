@@ -14,6 +14,8 @@ class Problema {
   std::vector<std::vector<int>> getValoresArcos();
   int getNumeroMaquinas() { return numero_maquinas_; }
   int getNumeroTareas() { return numero_tareas_; }
+  // Sobrecarga de operador << para poder imprimir el problema
+  friend std::ostream& operator<<(std::ostream& os, const Problema& problema);
 
  private:
   int numero_tareas_; // n
@@ -22,3 +24,5 @@ class Problema {
   std::vector<std::vector<int>> tiempos_setup_; // sij
   std::vector<std::vector<int>> valores_arcos_; // tij
 };
+
+std::ostream& operator<<(std::ostream& os, const Problema& problema);

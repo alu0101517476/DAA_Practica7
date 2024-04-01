@@ -12,7 +12,9 @@ class AlgoritmoVoraz : public Algoritmo {
   AlgoritmoVoraz(const std::string& nombre_problema)
       : problema_{nombre_problema},
         solucion_algoritmo_{problema_.getNumeroMaquinas()} {};
-
+  // Método que nos permite calcular el TCT total
+  int calcularTCTTotal();
+  Problema getProblema() { return problema_; }
   Solucion resolver();
 
  private:

@@ -45,11 +45,12 @@ Problema::Problema(const std::string& nombre_fichero) {
   std::vector<std::vector<int>> aux{numero_tareas_ + 1,
                                     std::vector<int>(numero_tareas_ + 1)};
   tiempos_setup_ = aux;
+  // leemos la linea "Sij:U[]"
   std::getline(fichero_problema, linea);
   // Leemos y almacenamos los tiempos de setup
   for (int i = 0; i <= numero_tareas_ && std::getline(fichero_problema, linea);
        ++i) {
-    std::istringstream tiempo_setup(linea);
+    std::stringstream tiempo_setup(linea);
     for (int j = 0; j <= numero_tareas_; ++j) {
       tiempo_setup >> tiempos_setup_[i][j];
     }
@@ -62,4 +63,23 @@ Problema::Problema(const std::string& nombre_fichero) {
       valores_arcos_[i][j] = tiempos_setup_[i][j] + tiempo_procesamiento_tareas_[j];  // Acceso directo a pj con j
     }
   }
+}
+
+std::ostream& operator<<(std::ostream& os, const Problema& problema) {
+  std::cout << "n: " << problema.numero_tareas_ << std::endl;
+  std::cout << "m: " << problema.numero_maquinas_ << std::endl;
+  std::cout << "Pi: ";
+  for (const auto& tiempo_procesamiento : problema.tiempo_procesamiento_tareas_) {
+    std::cout << tiempo_procesamiento << ' ';
+  }
+  std::cout << std::endl;
+  std::cout << "Sij: " << std::endl;
+  std::cout << problema.tiempos_setup_.size() << ' ' << problema.tiempos_setup_[0].size() << std::endl;
+  for (const auto& maquina : problema.tiempos_setup_) {
+    for (const auto& tiempo_setup_maquina : maquina) {
+      std::cout << tiempo_setup_maquina << ' ';
+    }
+    std::cout << std::endl;
+  }
+  return os;
 }
