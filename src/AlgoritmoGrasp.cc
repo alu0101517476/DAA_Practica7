@@ -9,52 +9,60 @@ int AlgoritmoGrasp::calcularTCTTotal() {
 }
 
 Solucion AlgoritmoGrasp::resolver() {
-
-  std::vector<int> tiempo_procesamiento{problema_.getTiempoProcesamientoTareas()}, tiempo_procesamiento_aux{tiempo_procesamiento};
-  for (int i{0}; i < problema_.getNumeroMaquinas(); ++i) {
+  int numero_maquinas{problema_.getNumeroMaquinas()},
+      numero_tareas{problema_.getNumeroTareas()};
+  // Seleccionamos las m tareas con menores valores de t0j
+  for (int i{0}; i < numero_maquinas; ++i) {
     solucion_algoritmo_[i].emplace_back(0);
   }
-  // Motor de números aleatorios basado en una semilla
-  std::random_device rd;
-  std::mt19937 gen(rd());
 
-  while (tiempo_procesamiento_aux.size() != 1) {
-    std::uniform_int_distribution<> distribucion(
-        1, tiempo_procesamiento_aux.size() - 1);
-    int indice_aleatorio{distribucion(gen)}, tct_minimo{INT_MAX},
-        maquina_optima, posicion_optima, tarea_asignada;
-    for (int maquina{0}; maquina < problema_.getNumeroMaquinas(); ++maquina) {
+  // Iteramos sobre todas las tareas para asignarlas
+  for (int tarea{1}; tarea <= numero_tareas; ++tarea) {
+    // Busca la mejor posición y máquina para la tarea
+    std::vector<TernaTctGrasp> lista_candidatos_restringida;
+    for (int maquina{0}; maquina < numero_maquinas; ++maquina) {
       for (int posicion{0}; posicion < solucion_algoritmo_[maquina].size();
            ++posicion) {
-        int tct{calcularTCTOptimo(maquina, posicion, indice_aleatorio,
-                                  solucion_algoritmo_,
+        int tct{calcularTCTOptimo(maquina, posicion, tarea, solucion_algoritmo_,
                                   problema_.getValoresArcos())};
-        if (tct < tct_minimo) {
-          tct_minimo = tct;
-          maquina_optima = maquina;
-          posicion_optima = posicion;
-          tarea_asignada = indice_aleatorio;
-        }
+        // Introducimos los posibles candidatos
+        TernaTctGrasp candidato{tct, maquina, posicion};
+        lista_candidatos_restringida.emplace_back(candidato);
       }
+      std::sort(
+          lista_candidatos_restringida.begin(),
+          lista_candidatos_restringida.end(),
+          [](const TernaTctGrasp& candidato1, const TernaTctGrasp& candidato2) {
+            return candidato1.tct_ < candidato2.tct_;
+          });
     }
+    // Escogemos uno de los 3 mejores candidatos al azar
+    int inicio_indice_aleatorio{0}, final_indice_aleatorio{0},
+        numero_candidatos{lista_candidatos_restringida.size()};
+    if (lista_candidatos_restringida.size() >= 3) {
+      inicio_indice_aleatorio = numero_candidatos - 3,
+      final_indice_aleatorio = numero_candidatos - 1;
+    } else if (lista_candidatos_restringida.size() == 2) {
+      inicio_indice_aleatorio = numero_candidatos - 2,
+      final_indice_aleatorio = numero_candidatos - 1;
+    }
+    // Inicializa el generador de números aleatorios
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    // Define el rango de los números aleatorios que quieres generar
+    std::uniform_int_distribution<> distrib(inicio_indice_aleatorio,
+                                            final_indice_aleatorio);
+
+    TernaTctGrasp candidato_aleatorio{
+        TernaTctGrasp(lista_candidatos_restringida[distrib(gen)])};
     // Insertamos la tarea en la mejor máquina y en la mejor posición
     // encontrada
-    std::vector<int>::iterator it = solucion_algoritmo_[maquina_optima].begin();
-
-    // Hallamos la posicion en el vector original
-    auto iterador = std::find(tiempo_procesamiento.begin(),
-                        tiempo_procesamiento.end(),
-                        tiempo_procesamiento_aux[indice_aleatorio]);
-
-    if (it != tiempo_procesamiento.end()) {
-      // Si el elemento existe en el vector, calcula su posición
-      int posicion = iterador - tiempo_procesamiento.begin();
-      solucion_algoritmo_[maquina_optima].emplace(it + posicion_optima + 1,
-                                                  posicion);
-    }
-    tiempo_procesamiento_aux.erase(tiempo_procesamiento_aux.begin() +
-                                   indice_aleatorio);
+    std::vector<int>::iterator it =
+        solucion_algoritmo_[candidato_aleatorio.maquina_].begin();
+    solucion_algoritmo_[candidato_aleatorio.maquina_].emplace(
+        it + candidato_aleatorio.posicion_ + 1, tarea);
   }
+  // Calculamos el coste total de la solución
   solucion_algoritmo_.setCosteTotal(calcularTCTTotal());
   return solucion_algoritmo_;
 }
