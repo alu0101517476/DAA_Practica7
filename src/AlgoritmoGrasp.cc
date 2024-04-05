@@ -12,7 +12,7 @@ Solucion AlgoritmoGrasp::resolver() {
   int numero_maquinas{problema_.getNumeroMaquinas()},
       numero_tareas{problema_.getNumeroTareas()};
   solucion_algoritmo_.setCosteTotal(INT_MAX);
-  for (int ejecuciones{0}; ejecuciones < 10; ++ejecuciones) {
+  for (int ejecuciones{0}; ejecuciones < 100; ++ejecuciones) {
     Solucion solucion_actual{problema_.getNumeroMaquinas()};
     // Seleccionamos las m tareas con menores valores de t0j
     for (int i{0}; i < numero_maquinas; ++i) {
@@ -42,11 +42,9 @@ Solucion AlgoritmoGrasp::resolver() {
       int inicio_indice_aleatorio{0}, final_indice_aleatorio{0},
           numero_candidatos{lista_candidatos_restringida.size()};
       if (lista_candidatos_restringida.size() >= 3) {
-        inicio_indice_aleatorio = numero_candidatos - 3,
-        final_indice_aleatorio = numero_candidatos - 1;
+        final_indice_aleatorio = 2;
       } else if (lista_candidatos_restringida.size() == 2) {
-        inicio_indice_aleatorio = numero_candidatos - 2,
-        final_indice_aleatorio = numero_candidatos - 1;
+        final_indice_aleatorio = 1;
       }
       // Inicializa el generador de números aleatorios
       std::random_device rd;
