@@ -17,4 +17,7 @@ int calcularTCTOptimo(int maquina, int posicion, int tarea, Solucion& solucion_a
 
 int calcularTCTTotalMaquinas(Solucion& solucion_algoritmo, const std::vector<std::vector<int>>& valores_arcos);
 
+int calcularTCTTotalMaquinas(std::vector<std::vector<int>>& matriz_solucion, const std::vector<std::vector<int>>& valores_arcos);
+
+
 void ayuda();

@@ -8,6 +8,7 @@ class Solucion {
  public:
   Solucion() {};
   Solucion(const int& numero_maquinas);
+  Solucion(const std::pair<std::vector<std::vector<int>>, int>& solucion): solucion_{solucion} {}
   void agregarTarea(int indice_maquina, int tarea);
   // getters
   std::pair<std::vector<std::vector<int>>, int>& getSolucion() { return solucion_; }

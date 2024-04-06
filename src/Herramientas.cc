@@ -35,9 +35,21 @@ int calcularTCTOptimo(int maquina, int posicion, int tarea,
   return tct_resultado;
 }
 
-int calcularTCTTotalMaquinas(Solucion& solucion_algoritmo, const std::vector<std::vector<int>>& valores_arcos) {
+int calcularTCTTotalMaquinas(
+    Solucion& solucion_algoritmo,
+    const std::vector<std::vector<int>>& valores_arcos) {
   int tct_total{0};
   for (const auto& maquina : solucion_algoritmo.getSolucion().first) {
+    tct_total += calcularTCTMaquina(maquina, valores_arcos);
+  }
+  return tct_total;
+}
+
+int calcularTCTTotalMaquinas(
+    std::vector<std::vector<int>>& matriz_solucion,
+    const std::vector<std::vector<int>>& valores_arcos) {
+  int tct_total{0};
+  for (const auto& maquina : matriz_solucion) {
     tct_total += calcularTCTMaquina(maquina, valores_arcos);
   }
   return tct_total;

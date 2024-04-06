@@ -15,6 +15,8 @@ class AlgoritmoGrasp : public Algoritmo {
         solucion_algoritmo_{problema_.getNumeroMaquinas()} {}
   Solucion resolver();
   int calcularTCTTotal();
+  Solucion faseConstructiva();
+  Solucion exploracionVecindario();
 
  private:
   Problema problema_;
