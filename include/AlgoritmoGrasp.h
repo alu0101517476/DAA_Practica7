@@ -16,7 +16,10 @@ class AlgoritmoGrasp : public Algoritmo {
   Solucion resolver();
   int calcularTCTTotal();
   Solucion faseConstructiva();
-  Solucion exploracionVecindario();
+  Solucion exploracionVecindarioAleatorio();
+  Solucion exploracionVecindarioReinsertando(int numero_maximo_intentos = 5);
+  bool solucionVecinaEncontrada(std::vector<int>& maquina);
+  Solucion getSolucion() { return solucion_algoritmo_; }
 
  private:
   Problema problema_;

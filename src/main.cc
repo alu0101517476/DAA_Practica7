@@ -17,7 +17,6 @@ int main(int argc, char* argv[]) {
   std::cout << voraz.resolver() << std::endl;
   std::cout << "-----------------" << std::endl;
   AlgoritmoGrasp grasp{std::string(argv[1])};
-  std::cout << grasp.faseConstructiva() << std::endl;
-  grasp.exploracionVecindario();
+  std::cout << grasp.resolver() << std::endl;
   return 0; 
 }
