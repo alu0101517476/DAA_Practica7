@@ -1,5 +1,9 @@
 #include "../include/AlgoritmoGrasp.h"
 
+/**
+ * @brief Método que calcula el TCT total de la solución
+ * @return int TCT total
+ */
 int AlgoritmoGrasp::calcularTCTTotal() {
   int tct_total{0};
   for (const auto& maquina : solucion_algoritmo_.getSolucion().first) {
@@ -8,6 +12,11 @@ int AlgoritmoGrasp::calcularTCTTotal() {
   return tct_total;
 }
 
+/**
+ * @brief Fase constructiva del algoritmo GRASP que nos da una solución
+ * apoyándonos en las soluciones que nos va dando el algoritmo voraz
+ * @return Solucion Solución después de haber hecho la fase constructiva
+ */
 Solucion AlgoritmoGrasp::faseConstructiva() {
   int numero_maquinas{problema_.getNumeroMaquinas()},
       numero_tareas{problema_.getNumeroTareas()};
@@ -199,8 +208,7 @@ Solucion AlgoritmoGrasp::exploracionVecindarioReinsertando(
   for (int maquina{maquina_mejorada};
        maquina < solucion_algoritmo_.getSolucion().first.size(); ++maquina) {
     while (numero_intentos < numero_maximo_intentos) {
-      (solucionVecinaEncontrada(
-          solucion_algoritmo_.getSolucion().first[maquina]))
+      (solucionVecinaEncontrada(solucion_algoritmo_[maquina]))
           ? numero_intentos = 0
           : ++numero_intentos;
     }

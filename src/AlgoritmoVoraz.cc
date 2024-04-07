@@ -1,5 +1,9 @@
 #include "../include/AlgoritmoVoraz.h"
 
+/**
+ * @brief Método que calcula el tct total de una máquina
+ * @return int TCT total
+ */
 int AlgoritmoVoraz::calcularTCTTotal() {
   int tct_total{0};
   for (const auto& maquina : solucion_algoritmo_.getSolucion().first) {
@@ -8,6 +12,10 @@ int AlgoritmoVoraz::calcularTCTTotal() {
   return tct_total;
 }
 
+/**
+ * @brief Método que ejecuta el algoritmo voraz
+ * @return Solucion solución después de haber ejecutado el algoritmo voraz
+ */
 Solucion AlgoritmoVoraz::resolver() {
   int numero_maquinas{problema_.getNumeroMaquinas()},
       numero_tareas{problema_.getNumeroTareas()};

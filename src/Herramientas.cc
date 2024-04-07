@@ -25,6 +25,16 @@ int calcularTCTMaquina(const std::vector<int>& maquina,
   return resultado;
 }
 
+/**
+ * @brief Función que calcula el TCT de una máquina después de haber introducido
+ * una tarea
+ * @param maquina maquina a la que queremos introducirle una tarea
+ * @param posicion posición en la que queremos introducir la tarea
+ * @param tarea tarea que vamos a introducir
+ * @param solucion_algoritmo solución actual
+ * @param valores_arcos valores de todos los arcos
+ * @return int
+ */
 int calcularTCTOptimo(int maquina, int posicion, int tarea,
                       Solucion& solucion_algoritmo,
                       const std::vector<std::vector<int>>& valores_arcos) {
@@ -35,6 +45,12 @@ int calcularTCTOptimo(int maquina, int posicion, int tarea,
   return tct_resultado;
 }
 
+/**
+ * @brief Función que calcula el TCT total
+ * @param solucion_algoritmo
+ * @param valores_arcos
+ * @return int
+ */
 int calcularTCTTotalMaquinas(
     Solucion& solucion_algoritmo,
     const std::vector<std::vector<int>>& valores_arcos) {
@@ -45,6 +61,13 @@ int calcularTCTTotalMaquinas(
   return tct_total;
 }
 
+/**
+ * @brief Sibrecarga de función para calcular el TCT total pero dado una
+ * estructura de datos diferente a la clase Solución
+ * @param matriz_solucion 
+ * @param valores_arcos
+ * @return int
+ */
 int calcularTCTTotalMaquinas(
     std::vector<std::vector<int>>& matriz_solucion,
     const std::vector<std::vector<int>>& valores_arcos) {
