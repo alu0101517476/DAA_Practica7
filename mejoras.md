@@ -1,4 +1,5 @@
 GRASP:
+
 IMPORTANTE PARA MEJORAR DE CARA A LA PRÓXIMA ENTREGA:
 1. En el método resolver() meter un bucle do-while en el que dentro esté tanto la fase constructiva como la de mejora. El bucle se repite mientras no mejore el resultado
 
