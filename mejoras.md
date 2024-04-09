@@ -1,6 +1,10 @@
 GRASP:
-En el método resolver() meter un bucle do-while en el que dentro esté tanto la fase constructiva como la de mejora. El bucle se repite mientras no mejore el resultado
+IMPORTANTE PARA MEJORAR DE CARA A LA PRÓXIMA ENTREGA:
+1. En el método resolver() meter un bucle do-while en el que dentro esté tanto la fase constructiva como la de mejora. El bucle se repite mientras no mejore el resultado
 
+2. Hacer método para calcular porcentaje de mejora de la fase constructiva a la búsqueda local
+
+3. Hacer cálculo de tiempo si evaluamos movimiento y sin hacerlo para ver la diferencia de tiempo
 
 
 General:
