@@ -7,6 +7,10 @@ IMPORTANTE PARA MEJORAR DE CARA A LA PRÓXIMA ENTREGA:
 
 3. Hacer cálculo de tiempo si evaluamos movimiento y sin hacerlo para ver la diferencia de tiempo
 
+4. Hacer búsquedas intercambiando tareas(swap) dentro de la misma máquina y entre 2 máquinas
+
+5. Hacer evaluación movimientos, esto es que si hago un movimiento ver como aumenta o disminuye el TCT de la máquina haciendo sumas y restas
+
 
 General:
 1. El método de los algoritmos que calcula el TCT total, pasarlo a una función externa, en herramientas.h y usar esa función en 
