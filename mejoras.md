@@ -7,8 +7,12 @@ IMPORTANTE PARA MEJORAR DE CARA A LA PRÓXIMA ENTREGA:
 
 3. Hacer cálculo de tiempo si evaluamos movimiento y sin hacerlo para ver la diferencia de tiempo
 
+<<<<<<< HEAD
 4. Hacer búsquedas intercambiando tareas(swap) dentro de la misma máquina y entre 2 máquinas. Está en el guión, son las estrategias que me faltan y que por eso
 saque el no apto. Lo mejor es hacer una familia de algoritmos de busqueda de soluciones vecinas usando el patron estrategia
+=======
+4. Hacer búsquedas intercambiando tareas(swap) dentro de la misma máquina y entre 2 máquinas. Está en el guión
+>>>>>>> 2296829b9c08f68d6b128b1e9d0fec323586b17c
 
 5. Hacer evaluación movimientos, esto es que si hago un movimiento ver como aumenta o disminuye el TCT de la máquina haciendo sumas y restas
 
@@ -20,4 +24,8 @@ los dos algoritmos. Eliminar el método en los dos algoritmos
 2. Como en los dos algoritmos, metes la tarea 0 al principio, lo mejor sería que lo hicieras en el constructor de solución
 y así no repites ese código 2 veces
 
+<<<<<<< HEAD
 3. Cambiar el nombre de la variable "incremento" dentro del algoritmo
+=======
+3. Cambiar el nombre de la variable "incremento" dentro del algoritmo
+>>>>>>> 2296829b9c08f68d6b128b1e9d0fec323586b17c
