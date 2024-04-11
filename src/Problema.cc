@@ -1,20 +1,20 @@
 #include "../include/Problema.h"
 
-std::vector<int> Problema::getTiempoProcesamientoTareas() {
+std::vector<int> Problema::getTiempoProcesamientoTareas() const {
   return tiempo_procesamiento_tareas_;
 }
 
-std::vector<std::vector<int>> Problema::getTiemposSetup() {
+std::vector<std::vector<int>> Problema::getTiemposSetup() const {
   return tiempos_setup_;
 }
 
-std::vector<std::vector<int>> Problema::getValoresArcos() {
+std::vector<std::vector<int>> Problema::getValoresArcos() const {
   return valores_arcos_;
 }
 
-int Problema::getNumeroMaquinas() { return numero_maquinas_; }
-  
-int Problema::getNumeroTareas() { return numero_tareas_; }
+int Problema::getNumeroMaquinas() const { return numero_maquinas_; }
+
+int Problema::getNumeroTareas() const { return numero_tareas_; }
 
 Problema::Problema(const std::string& nombre_fichero) {
   std::ifstream fichero_problema{nombre_fichero, std::ios::in};
@@ -65,7 +65,9 @@ Problema::Problema(const std::string& nombre_fichero) {
   for (size_t i = 0; i < tiempos_setup_.size(); ++i) {
     for (size_t j = 0; j < tiempos_setup_[i].size(); ++j) {
       // Calcula tij directamente para todas las transiciones
-      valores_arcos_[i][j] = tiempos_setup_[i][j] + tiempo_procesamiento_tareas_[j];  // Acceso directo a pj con j
+      valores_arcos_[i][j] =
+          tiempos_setup_[i][j] +
+          tiempo_procesamiento_tareas_[j];  // Acceso directo a pj con j
     }
   }
 }
@@ -74,12 +76,14 @@ std::ostream& operator<<(std::ostream& os, const Problema& problema) {
   std::cout << "n: " << problema.numero_tareas_ << std::endl;
   std::cout << "m: " << problema.numero_maquinas_ << std::endl;
   std::cout << "Pi: ";
-  for (const auto& tiempo_procesamiento : problema.tiempo_procesamiento_tareas_) {
+  for (const auto& tiempo_procesamiento :
+       problema.tiempo_procesamiento_tareas_) {
     std::cout << tiempo_procesamiento << ' ';
   }
   std::cout << std::endl;
   std::cout << "Sij: " << std::endl;
-  std::cout << problema.tiempos_setup_.size() << ' ' << problema.tiempos_setup_[0].size() << std::endl;
+  std::cout << problema.tiempos_setup_.size() << ' '
+            << problema.tiempos_setup_[0].size() << std::endl;
   for (const auto& maquina : problema.tiempos_setup_) {
     for (const auto& tiempo_setup_maquina : maquina) {
       std::cout << tiempo_setup_maquina << ' ';

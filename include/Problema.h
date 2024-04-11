@@ -10,11 +10,11 @@ class Problema {
  public:
   Problema(const std::string& nombre_fichero);
   // getters
-  std::vector<int> getTiempoProcesamientoTareas();
-  std::vector<std::vector<int>> getTiemposSetup();
-  std::vector<std::vector<int>> getValoresArcos();
-  int getNumeroMaquinas();
-  int getNumeroTareas();
+  std::vector<int> getTiempoProcesamientoTareas() const;
+  std::vector<std::vector<int>> getTiemposSetup() const;
+  std::vector<std::vector<int>> getValoresArcos() const;
+  int getNumeroMaquinas() const;
+  int getNumeroTareas() const;
   // Sobrecarga de operador << para poder imprimir el problema
   friend std::ostream& operator<<(std::ostream& os, const Problema& problema);
 
