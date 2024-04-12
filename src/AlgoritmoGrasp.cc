@@ -32,19 +32,19 @@ Solucion AlgoritmoGrasp::faseConstructiva() {
     std::vector<TernaTctGrasp> lista_candidatos_restringida;
     for (int maquina{0}; maquina < numero_maquinas; ++maquina) {
       for (int posicion{0}; posicion < solucion_actual[maquina].size();
-            ++posicion) {
+           ++posicion) {
         int tct{calcularTCTOptimo(maquina, posicion, tarea, solucion_actual,
                                   problema_.getValoresArcos())};
         // Introducimos los posibles candidatos
         TernaTctGrasp candidato{tct, maquina, posicion};
         lista_candidatos_restringida.emplace_back(candidato);
       }
-      std::sort(lista_candidatos_restringida.begin(),
-                lista_candidatos_restringida.end(),
-                [](const TernaTctGrasp& candidato1,
-                    const TernaTctGrasp& candidato2) {
-                  return candidato1.tct_ < candidato2.tct_;
-                });
+      std::sort(
+          lista_candidatos_restringida.begin(),
+          lista_candidatos_restringida.end(),
+          [](const TernaTctGrasp& candidato1, const TernaTctGrasp& candidato2) {
+            return candidato1.tct_ < candidato2.tct_;
+          });
     }
     // Escogemos uno de los 3 mejores candidatos al azar
     int inicio_indice_aleatorio{0}, final_indice_aleatorio{0},
@@ -78,27 +78,49 @@ Solucion AlgoritmoGrasp::faseConstructiva() {
   return solucion_algoritmo_;
 }
 
+void AlgoritmoGrasp::setEstructuraEntorno(int opcion_algoritmo) {
+  switch (opcion_algoritmo) {
+    case 1: {
+      IntercambioEntre intercambio_entre{solucion_algoritmo_};
+      movimiento_entre_ = &intercambio_entre;
+      tipo_movimiento_ = 1;
+      break;
+    }
+
+    case 2: {
+      IntercambioIntra intercambio_intra{solucion_algoritmo_};
+      movimiento_intra_ = &intercambio_intra;
+      tipo_movimiento_ = 0;
+      break;
+    }
+
+    case 3: {
+      ReinsercionEntre reinsercion_entre{solucion_algoritmo_};
+      movimiento_entre_ = &reinsercion_entre;
+      tipo_movimiento_ = 1;
+      break;
+    }
+
+    default: {  // opción 4
+      ReinsercionIntra reinsercion_intra{solucion_algoritmo_};
+      movimiento_intra_ = &reinsercion_intra;
+      tipo_movimiento_ = 0;
+      break;
+    }
+  }
+}
+
 /**
  * @brief Método que ejecuta el algoritmo con la fase constructiva y con la fase
  * de postprocesamiento para hallar una nueva solución
  * @return Solucion solucion encontrada después de ejecutar el algoritmo
  */
 Solucion AlgoritmoGrasp::resolver() {
-  /*
+  faseConstructiva();
   do {
     faseConstructiva();
     exploracionVecindarioReinsertando();
     // Fase de actualización en caso de que la solución encontrada sea mejor
   } while (false);
-  */
-  faseConstructiva();
-  ReinsercionIntra reinsercion_intra{solucion_algoritmo_};
-  movimiento_intra_ = &reinsercion_intra;
-  movimiento_intra_->explorarVecindario(problema_, 10);
-  /*
-  ReinsercionEntre reinsercion_entre{solucion_algoritmo_};
-  movimiento_entre_ = &reinsercion_entre;
-  movimiento_entre_->explorarVecindario(problema_.getValoresArcos());
-  */
   return solucion_algoritmo_;
 }

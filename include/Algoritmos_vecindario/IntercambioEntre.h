@@ -1,5 +1,6 @@
 #pragma once
 
+#include "Herramientas.h"
 #include "MovimientoEntre.h"
 #include "Problema.h"
 #include "Solucion.h"
@@ -8,7 +9,9 @@ class IntercambioEntre : public MovimientoEntre {
  public:
   IntercambioEntre(const Solucion& solucion_fase_constructiva)
       : solucion_fase_constructiva_{solucion_fase_constructiva} {};
-  Solucion explorarVecindario(const std::vector<std::vector<int>>& valores_arcos, int numero_maximo_intentos = 10);
+  Solucion explorarVecindario(
+      const std::vector<std::vector<int>>& valores_arcos,
+      int numero_maximo_intentos = 10);
 
  private:
   bool solucionEncontrada_(std::vector<int>& maquina1,

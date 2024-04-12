@@ -78,6 +78,20 @@ int calcularTCTTotalMaquinas(
   return tct_total;
 }
 
+int elegirEstructuraEntornoGrasp() {
+  std::cout << "Elige la estructura de entorno con la que quieres ejecutar grasp:" << std::endl;
+  std::cout << "1. Intercambio de tareas entre máquinas" << std::endl;
+  std::cout << "2. Intercambio de tareas en la misma máquina" << std::endl;
+  std::cout << "3. Re-inserción de tareas entre máquinas" << std::endl;
+  std::cout << "4. Re-inserción de tareas en la misma máquina" << std::endl;
+  int opcion;
+  std::cin >> opcion;
+  if (opcion != 1 || opcion != 2 ||opcion != 3 ||opcion != 4) return opcion;
+  std::cout << "Error, la opción '" << opcion << "' no es válida" << std::endl;
+  exit(1);
+}
+
+
 /**
  * @brief Función que imprime por pantalla la ayuda del programa
  */

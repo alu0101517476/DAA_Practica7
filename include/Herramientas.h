@@ -19,5 +19,6 @@ int calcularTCTTotalMaquinas(Solucion& solucion_algoritmo, const std::vector<std
 
 int calcularTCTTotalMaquinas(std::vector<std::vector<int>>& matriz_solucion, const std::vector<std::vector<int>>& valores_arcos);
 
+int elegirEstructuraEntornoGrasp();
 
 void ayuda();

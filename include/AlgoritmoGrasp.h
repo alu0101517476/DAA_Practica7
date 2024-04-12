@@ -19,6 +19,7 @@ class AlgoritmoGrasp : public Algoritmo {
   AlgoritmoGrasp(const std::string& nombre_problema)
       : problema_{nombre_problema},
         solucion_algoritmo_{problema_.getNumeroMaquinas()} {}
+  void setEstructuraEntorno(int opcion_algoritmo);
   Solucion resolver();
   int calcularTCTTotal();
   Solucion faseConstructiva();
@@ -29,4 +30,6 @@ class AlgoritmoGrasp : public Algoritmo {
   MovimientoIntra* movimiento_intra_;
   Problema problema_;
   Solucion solucion_algoritmo_;
+  // 0 intra - 1 entre
+  int tipo_movimiento_; 
 };

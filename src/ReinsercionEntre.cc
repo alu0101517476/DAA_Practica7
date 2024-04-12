@@ -1,11 +1,5 @@
 #include "../include/Algoritmos_vecindario/ReinsercionEntre.h"
 
-void imprimirMaquina(const std::vector<int>& vector) {
-  std::cout << "-----------------------" << std::endl;
-  for (const auto& i : vector) std::cout << i << ' ';
-  std::cout << std::endl;
-}
-
 bool ReinsercionEntre::solucionEncontrada_(
     std::vector<int>& maquina1, std::vector<int>& maquina2,
     const std::vector<std::vector<int>>& valores_arcos) {

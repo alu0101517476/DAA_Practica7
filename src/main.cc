@@ -16,6 +16,7 @@ int main(int argc, char* argv[]) {
   AlgoritmoVoraz voraz{std::string(argv[1])};
   std::cout << voraz.resolver() << std::endl;
   std::cout << "-----------------" << std::endl;
+  elegirEstructuraEntornoGrasp();
   AlgoritmoGrasp grasp{std::string(argv[1])};
   std::cout << grasp.resolver() << std::endl;
   return 0; 
