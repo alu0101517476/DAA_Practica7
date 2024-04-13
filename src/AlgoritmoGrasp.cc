@@ -1,5 +1,20 @@
 #include "../include/AlgoritmoGrasp.h"
 
+AlgoritmoGrasp::AlgoritmoGrasp(const std::string& nombre_problema,
+                               int opcion_algoritmo)
+    : problema_{nombre_problema},
+      solucion_algoritmo_{problema_.getNumeroMaquinas()} {
+  setEstructuraEntorno(opcion_algoritmo);
+}
+
+AlgoritmoGrasp::AlgoritmoGrasp(const std::string& nombre_problema,
+                               int opcion_algoritmo, int maximo_iteraciones)
+    : problema_{nombre_problema},
+      solucion_algoritmo_{problema_.getNumeroMaquinas()} {
+  setEstructuraEntorno(opcion_algoritmo);
+  maximo_iteraciones_ = maximo_iteraciones;
+}
+
 /**
  * @brief Método que calcula el TCT total de la solución
  * @return int TCT total
@@ -20,7 +35,8 @@ int AlgoritmoGrasp::calcularTCTTotal() {
 Solucion AlgoritmoGrasp::faseConstructiva() {
   int numero_maquinas{problema_.getNumeroMaquinas()},
       numero_tareas{problema_.getNumeroTareas()};
-  solucion_algoritmo_.setCosteTotal(INT_MAX);
+  Solucion solucion_final;
+  solucion_final.setCosteTotal(INT_MAX);
   Solucion solucion_actual{problema_.getNumeroMaquinas()};
   // Seleccionamos las m tareas con menores valores de t0j
   for (int i{0}; i < numero_maquinas; ++i) {
@@ -72,38 +88,34 @@ Solucion AlgoritmoGrasp::faseConstructiva() {
   }
   solucion_actual.setCosteTotal(
       calcularTCTTotalMaquinas(solucion_actual, problema_.getValoresArcos()));
-  if (solucion_algoritmo_.getCosteTotal() > solucion_actual.getCosteTotal()) {
-    solucion_algoritmo_ = solucion_actual;
+  if (solucion_final.getCosteTotal() > solucion_actual.getCosteTotal()) {
+    solucion_final = solucion_actual;
   }
-  return solucion_algoritmo_;
+  return solucion_final;
 }
 
 void AlgoritmoGrasp::setEstructuraEntorno(int opcion_algoritmo) {
   switch (opcion_algoritmo) {
     case 1: {
-      IntercambioEntre intercambio_entre{solucion_algoritmo_};
-      movimiento_entre_ = &intercambio_entre;
+      movimiento_entre_ = new IntercambioEntre{solucion_algoritmo_};
       tipo_movimiento_ = 1;
       break;
     }
 
     case 2: {
-      IntercambioIntra intercambio_intra{solucion_algoritmo_};
-      movimiento_intra_ = &intercambio_intra;
+      movimiento_intra_ = new IntercambioIntra{solucion_algoritmo_};
       tipo_movimiento_ = 0;
       break;
     }
 
     case 3: {
-      ReinsercionEntre reinsercion_entre{solucion_algoritmo_};
-      movimiento_entre_ = &reinsercion_entre;
+      movimiento_entre_ = new ReinsercionEntre{solucion_algoritmo_};
       tipo_movimiento_ = 1;
       break;
     }
 
     default: {  // opción 4
-      ReinsercionIntra reinsercion_intra{solucion_algoritmo_};
-      movimiento_intra_ = &reinsercion_intra;
+      movimiento_intra_ = new ReinsercionIntra{solucion_algoritmo_};
       tipo_movimiento_ = 0;
       break;
     }
@@ -116,11 +128,39 @@ void AlgoritmoGrasp::setEstructuraEntorno(int opcion_algoritmo) {
  * @return Solucion solucion encontrada después de ejecutar el algoritmo
  */
 Solucion AlgoritmoGrasp::resolver() {
-  faseConstructiva();
-  do {
-    faseConstructiva();
-    exploracionVecindarioReinsertando();
-    // Fase de actualización en caso de que la solución encontrada sea mejor
-  } while (false);
+  solucion_algoritmo_ = faseConstructiva();
+  (tipo_movimiento_ == 0) ? movimiento_intra_->setSolucion(solucion_algoritmo_)
+                          : movimiento_entre_->setSolucion(solucion_algoritmo_);
+  int numero_intentos{0};
+  for (int i{0}; i < 1000; ++i) {
+    if (tipo_movimiento_ == 0) {
+      movimiento_intra_->setSolucion(faseConstructiva());
+      movimiento_intra_->explorarVecindario(problema_, 10);
+      // Fase actualización
+      if (calcularTCTTotal() <
+          calcularTCTTotalMaquinas(movimiento_intra_->getSolucion(),
+                                   problema_.getValoresArcos())) {
+        solucion_algoritmo_ = movimiento_intra_->getSolucion();
+        numero_intentos = 0;
+      } else {
+        ++numero_intentos;
+      }
+    } else {
+      movimiento_entre_->setSolucion(faseConstructiva());
+      movimiento_entre_->explorarVecindario(problema_.getValoresArcos(), 10);
+      // Fase actualización
+      if (calcularTCTTotal() <
+          calcularTCTTotalMaquinas(movimiento_entre_->getSolucion(),
+                                   problema_.getValoresArcos())) {
+        solucion_algoritmo_ = movimiento_entre_->getSolucion();
+        numero_intentos = 0;
+      } else {
+        ++numero_intentos;
+      }
+    }
+    if (numero_intentos == maximo_iteraciones_) {
+      break;
+    }
+  }
   return solucion_algoritmo_;
 }

@@ -1,8 +1,14 @@
 #include "../include/Algoritmos_vecindario/IntercambioEntre.h"
 
-void imprimirMaquina(const std::vector<int>& vector) {
-  for (const auto& i : vector) std::cout << i << ' ';
-  std::cout << std::endl;
+void IntercambioEntre::imprimirSolucion() {
+  std::cout << solucion_fase_constructiva_.getSolucion().second << std::endl;
+  for (int i{0}; i < solucion_fase_constructiva_.getSolucion().first.size(); ++i) {
+    std::cout << i << ": ";
+    for (const auto& tarea : solucion_fase_constructiva_.getSolucion().first[i]) {
+      if (tarea != 0) std::cout << tarea << " | ";
+    }
+    std::cout << std::endl;
+  }
 }
 
 bool IntercambioEntre::solucionEncontrada_(

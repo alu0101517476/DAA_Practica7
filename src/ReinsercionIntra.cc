@@ -1,5 +1,16 @@
 #include "../include/Algoritmos_vecindario/ReinsercionIntra.h"
 
+void ReinsercionIntra::imprimirSolucion() {
+  std::cout << solucion_fase_constructiva_.getSolucion().second << std::endl;
+  for (int i{0}; i < solucion_fase_constructiva_.getSolucion().first.size(); ++i) {
+    std::cout << i << ": ";
+    for (const auto& tarea : solucion_fase_constructiva_.getSolucion().first[i]) {
+      if (tarea != 0) std::cout << tarea << " | ";
+    }
+    std::cout << std::endl;
+  }
+}
+
 bool ReinsercionIntra::solucionEncontrada_(std::vector<int>& maquina,
                                            const Problema& problema) {
   int tct_maquina{calcularTCTMaquina(maquina, problema.getValoresArcos())};
