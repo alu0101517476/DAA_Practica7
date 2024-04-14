@@ -15,6 +15,7 @@ class AlgoritmoVoraz : public Algoritmo {
   // Método que nos permite calcular el TCT total
   int calcularTCTTotal();
   Problema getProblema() { return problema_; }
+  int getTCTTotal() { return solucion_algoritmo_.getSolucion().second; }
   Solucion resolver();
 
  private:

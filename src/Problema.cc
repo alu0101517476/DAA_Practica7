@@ -17,6 +17,7 @@ int Problema::getNumeroMaquinas() const { return numero_maquinas_; }
 int Problema::getNumeroTareas() const { return numero_tareas_; }
 
 Problema::Problema(const std::string& nombre_fichero) {
+  nombre_fichero_ = nombre_fichero;
   std::ifstream fichero_problema{nombre_fichero, std::ios::in};
   if (fichero_problema.fail()) {
     std::cerr << "Error, el fichero " << nombre_fichero
@@ -70,6 +71,7 @@ Problema::Problema(const std::string& nombre_fichero) {
           tiempo_procesamiento_tareas_[j];  // Acceso directo a pj con j
     }
   }
+  fichero_problema.close();
 }
 
 std::ostream& operator<<(std::ostream& os, const Problema& problema) {

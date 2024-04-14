@@ -26,6 +26,9 @@ class AlgoritmoGrasp : public Algoritmo {
   int calcularTCTTotal();
   Solucion faseConstructiva();
   Solucion getSolucion() { return solucion_algoritmo_; }
+  Problema getProblema() { return problema_; }
+  int getTCTTotal() { return solucion_algoritmo_.getSolucion().second; }
+  void setSolucion(const Solucion& solucion) { solucion_algoritmo_ = solucion; }
 
  private:
   MovimientoEntre* movimiento_entre_;

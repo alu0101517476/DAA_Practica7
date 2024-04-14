@@ -35,21 +35,19 @@ int AlgoritmoGrasp::calcularTCTTotal() {
 Solucion AlgoritmoGrasp::faseConstructiva() {
   int numero_maquinas{problema_.getNumeroMaquinas()},
       numero_tareas{problema_.getNumeroTareas()};
-  Solucion solucion_final;
-  solucion_final.setCosteTotal(INT_MAX);
-  Solucion solucion_actual{problema_.getNumeroMaquinas()};
+  Solucion solucion_final{problema_.getNumeroMaquinas()};
   // Seleccionamos las m tareas con menores valores de t0j
   for (int i{0}; i < numero_maquinas; ++i) {
-    solucion_actual[i].emplace_back(0);
+    solucion_final[i].emplace_back(0);
   }
   // Iteramos sobre todas las tareas para asignarlas
   for (int tarea{1}; tarea <= numero_tareas; ++tarea) {
     // Busca la mejor posición y máquina para la tarea
     std::vector<TernaTctGrasp> lista_candidatos_restringida;
     for (int maquina{0}; maquina < numero_maquinas; ++maquina) {
-      for (int posicion{0}; posicion < solucion_actual[maquina].size();
+      for (int posicion{0}; posicion < solucion_final[maquina].size();
            ++posicion) {
-        int tct{calcularTCTOptimo(maquina, posicion, tarea, solucion_actual,
+        int tct{calcularTCTOptimo(maquina, posicion, tarea, solucion_final,
                                   problema_.getValoresArcos())};
         // Introducimos los posibles candidatos
         TernaTctGrasp candidato{tct, maquina, posicion};
@@ -63,8 +61,7 @@ Solucion AlgoritmoGrasp::faseConstructiva() {
           });
     }
     // Escogemos uno de los 3 mejores candidatos al azar
-    int inicio_indice_aleatorio{0}, final_indice_aleatorio{0},
-        numero_candidatos{lista_candidatos_restringida.size()};
+    int inicio_indice_aleatorio{0}, final_indice_aleatorio{0};
     if (lista_candidatos_restringida.size() >= 3) {
       final_indice_aleatorio = 2;
     } else if (lista_candidatos_restringida.size() == 2) {
@@ -82,15 +79,12 @@ Solucion AlgoritmoGrasp::faseConstructiva() {
     // Insertamos la tarea en la mejor máquina y en la mejor posición
     // encontrada
     std::vector<int>::iterator it =
-        solucion_actual[candidato_aleatorio.maquina_].begin();
-    solucion_actual[candidato_aleatorio.maquina_].emplace(
+        solucion_final[candidato_aleatorio.maquina_].begin();
+    solucion_final[candidato_aleatorio.maquina_].emplace(
         it + candidato_aleatorio.posicion_ + 1, tarea);
   }
-  solucion_actual.setCosteTotal(
-      calcularTCTTotalMaquinas(solucion_actual, problema_.getValoresArcos()));
-  if (solucion_final.getCosteTotal() > solucion_actual.getCosteTotal()) {
-    solucion_final = solucion_actual;
-  }
+  solucion_final.setCosteTotal(
+      calcularTCTTotalMaquinas(solucion_final, problema_.getValoresArcos()));
   return solucion_final;
 }
 
