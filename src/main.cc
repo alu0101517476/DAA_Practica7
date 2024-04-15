@@ -11,7 +11,6 @@
 
 int main() { 
   std::vector<std::string> nombres_ficheros{{"PMSP/I40j_2m_S1_1.txt", "PMSP/I40j_4m_S1_1.txt", "PMSP/I40j_6m_S1_1.txt", "PMSP/I40j_8m_S1_1.txt", "PMSP/Inst50j/I50j_2m_S1_1.txt", "PMSP/Inst60j/I60j_2m_S1_1.txt", "PMSP/Inst70j/I70j_2m_S1_1.txt"}};
-  /*
   std::cout << "------------------------------------------------------------------------" << std::endl;
   std::cout << "\t\tAlgoritmo Voraz" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
@@ -96,7 +95,6 @@ int main() {
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
     std::cout << std::endl;
   }
-  */
   //////////////////////////////////////////////////////////
   std::cout << "------------------------------------------------------------------------" << std::endl;
   std::cout << "\t\tGRASP con Reinserción de tareas entre máquinas" << std::endl;
@@ -153,10 +151,9 @@ int main() {
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
     std::cout << std::endl;
   }
-  /*
   //////////////////////////////////////////////////////////
   std::cout << "------------------------------------------------------------------------" << std::endl;
-  std::cout << "\t\t\t\tGVNS MultiArranque" << std::endl;
+  std::cout << "\t\t\t\tGVNS" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
@@ -170,7 +167,7 @@ int main() {
   }
   //////////////////////////////////////////////////////////
   std::cout << "------------------------------------------------------------------------" << std::endl;
-  std::cout << "\t\t\t\tGVNS" << std::endl;
+  std::cout << "\t\t\t\tVNS" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
@@ -182,6 +179,5 @@ int main() {
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), gvns.getProblema().getNumeroTareas(), (i + 1), gvns.getTCTTotal(), duration);
     std::cout << std::endl;
   }
-  */
   return 0; 
 }
