@@ -19,7 +19,6 @@ int main(/*int argc, char* argv[]*/) {
   */
   std::vector<std::string> nombres_ficheros{{"PMSP/I40j_2m_S1_1.txt", "PMSP/I40j_4m_S1_1.txt", "PMSP/I40j_6m_S1_1.txt", "PMSP/I40j_8m_S1_1.txt", "PMSP/Inst50j/I50j_2m_S1_1.txt", "PMSP/Inst60j/I60j_2m_S1_1.txt", "PMSP/Inst70j/I70j_2m_S1_1.txt"}};
   //std::string nombre_fichero{argv[1]};
-  /*
   std::cout << "------------------------------------------------------------------------" << std::endl;
   std::cout << "\t\tAlgoritmo Voraz" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
@@ -40,7 +39,7 @@ int main(/*int argc, char* argv[]*/) {
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
-    AlgoritmoGrasp grasp{nombres_ficheros[i], 1, 300};
+    AlgoritmoGrasp grasp{nombres_ficheros[i], 1, 1000};
     auto start = std::chrono::high_resolution_clock::now();
     grasp.resolver();
     auto end = std::chrono::high_resolution_clock::now();
@@ -54,7 +53,7 @@ int main(/*int argc, char* argv[]*/) {
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
-    AlgoritmoGrasp grasp{nombres_ficheros[i], 2, 300};
+    AlgoritmoGrasp grasp{nombres_ficheros[i], 2, 1000};
     auto start = std::chrono::high_resolution_clock::now();
     grasp.resolver();
     auto end = std::chrono::high_resolution_clock::now();
@@ -68,7 +67,7 @@ int main(/*int argc, char* argv[]*/) {
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
-    AlgoritmoGrasp grasp{nombres_ficheros[i], 3, 300};
+    AlgoritmoGrasp grasp{nombres_ficheros[i], 3, 1000};
     auto start = std::chrono::high_resolution_clock::now();
     grasp.resolver();
     auto end = std::chrono::high_resolution_clock::now();
@@ -82,7 +81,7 @@ int main(/*int argc, char* argv[]*/) {
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
-    AlgoritmoGrasp grasp{nombres_ficheros[i], 3, 300};
+    AlgoritmoGrasp grasp{nombres_ficheros[i], 3, 1000};
     auto start = std::chrono::high_resolution_clock::now();
     grasp.resolver();
     auto end = std::chrono::high_resolution_clock::now();
@@ -90,14 +89,13 @@ int main(/*int argc, char* argv[]*/) {
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
     std::cout << std::endl;
   }
-  */
   //////////////////////////////////////////////////////////
   std::cout << "------------------------------------------------------------------------" << std::endl;
   std::cout << "\t\tFase constructiva GRASP" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
-    AlgoritmoGrasp grasp{nombres_ficheros[i], 3, 300};
+    AlgoritmoGrasp grasp{nombres_ficheros[i], 3, 1000};
     auto start = std::chrono::high_resolution_clock::now();
     grasp.setSolucion(grasp.faseConstructiva());
     auto end = std::chrono::high_resolution_clock::now();
@@ -133,5 +131,18 @@ int main(/*int argc, char* argv[]*/) {
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), gvns.getProblema().getNumeroTareas(), (i + 1), gvns.getTCTTotal(), duration);
     std::cout << std::endl;
   }
+ /*
+  AlgoritmoVoraz voraz{nombre_fichero};
+  std::cout << voraz.resolver() << std::endl;
+  std::cout << "----------" << std::endl;
+  AlgoritmoGrasp grasp{nombre_fichero, 4, 1000};
+  std::cout << grasp.resolver() << std::endl;
+  std::cout << "----------" << std::endl;
+  AlgoritmoGvns gvns{nombre_fichero};
+  std::cout << gvns.resolver() << std::endl;
+  std::cout << "----------" << std::endl;
+  AlgoritmoGvns gvns2{nombre_fichero};
+  std::cout << gvns2.resolverMultiArranque() << std::endl;
+ */
   return 0; 
 }

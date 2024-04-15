@@ -133,7 +133,7 @@ Solucion AlgoritmoGvns::resolver() {
       Solucion solucion_vnd{VND(solucion_perturbada)};
       // (c) move or not
       if (calcularTCTTotalMaquinas(solucion_actual,
-                                   problema_.getValoresArcos()) <
+                                   problema_.getValoresArcos()) >
           calcularTCTTotalMaquinas(solucion_vnd, problema_.getValoresArcos())) {
         solucion_actual = solucion_vnd;
         solucion_actual.setCosteTotal(calcularTCTTotalMaquinas(solucion_actual,
@@ -166,7 +166,7 @@ Solucion AlgoritmoGvns::resolverMultiArranque() {
       Solucion solucion_vnd{VND(solucion_perturbada)};
       // (c)move or not
       if (calcularTCTTotalMaquinas(solucion_actual,
-                                   problema_.getValoresArcos()) <
+                                   problema_.getValoresArcos()) >
           calcularTCTTotalMaquinas(solucion_vnd, problema_.getValoresArcos())) {
         solucion_actual = solucion_vnd;
         k = 1;

@@ -131,7 +131,7 @@ Solucion AlgoritmoGrasp::resolver() {
       movimiento_intra_->setSolucion(faseConstructiva());
       movimiento_intra_->explorarVecindario(problema_, 10);
       // Fase actualización
-      if (calcularTCTTotal() <
+      if (calcularTCTTotal() >
           calcularTCTTotalMaquinas(movimiento_intra_->getSolucion(),
                                    problema_.getValoresArcos())) {
         solucion_algoritmo_ = movimiento_intra_->getSolucion();
@@ -143,7 +143,7 @@ Solucion AlgoritmoGrasp::resolver() {
       movimiento_entre_->setSolucion(faseConstructiva());
       movimiento_entre_->explorarVecindario(problema_.getValoresArcos(), 10);
       // Fase actualización
-      if (calcularTCTTotal() <
+      if (calcularTCTTotal() >
           calcularTCTTotalMaquinas(movimiento_entre_->getSolucion(),
                                    problema_.getValoresArcos())) {
         solucion_algoritmo_ = movimiento_entre_->getSolucion();
