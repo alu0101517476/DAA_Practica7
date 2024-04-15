@@ -5,15 +5,25 @@
  */
 void ReinsercionIntra::imprimirSolucion() {
   std::cout << solucion_fase_constructiva_.getSolucion().second << std::endl;
-  for (int i{0}; i < solucion_fase_constructiva_.getSolucion().first.size(); ++i) {
+  for (int i{0}; i < solucion_fase_constructiva_.getSolucion().first.size();
+       ++i) {
     std::cout << i << ": ";
-    for (const auto& tarea : solucion_fase_constructiva_.getSolucion().first[i]) {
+    for (const auto& tarea :
+         solucion_fase_constructiva_.getSolucion().first[i]) {
       if (tarea != 0) std::cout << tarea << " | ";
     }
     std::cout << std::endl;
   }
 }
 
+/**
+ * @brief Método que genera una solución inicial a partir de la cual se van a
+ * realizar búsquedas locales
+ * @param maquina máquina en la que se va a reinsertar las tareas
+ * @param problema
+ * @return true en caso de que se encuentre una solución mejor
+ * @return false en caso de que no se encuentre una solución mejor
+ */
 bool ReinsercionIntra::solucionEncontrada_(std::vector<int>& maquina,
                                            const Problema& problema) {
   int tct_maquina{calcularTCTMaquina(maquina, problema.getValoresArcos())};
@@ -34,6 +44,14 @@ bool ReinsercionIntra::solucionEncontrada_(std::vector<int>& maquina,
   return false;
 }
 
+/**
+ * @brief Método en el que se explora soluciones vecinas a partir de una
+ * solución inicial obtenida
+ * @param problema
+ * @param numero_maximo_intentos número máximo de intentos que se van a realizar
+ * para parar en caso de que no se encuentre una solución mejor
+ * @return Solucion
+ */
 Solucion ReinsercionIntra::explorarVecindario(const Problema& problema,
                                               int numero_maximo_intentos) {
   // Primero encontramos una solución vecina inicial en alguna de las máquinas

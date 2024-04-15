@@ -22,7 +22,7 @@ int AlgoritmoGvns::calcularTCTTotal() {
  * @param solucion solución que tenemos en ese momento y que queremos perturbar
  * @return Solucion solución después de haber sido perturbada
  */
-Solucion AlgoritmoGvns::perturbacionAleatoria(const Solucion& solucion) {
+Solucion AlgoritmoGvns::perturbacionAleatoria_(const Solucion& solucion) {
   // Escogemos un número aleatorio entre 1 y 4
   std::random_device rd;
   std::mt19937 gen(rd());
@@ -66,7 +66,7 @@ Solucion AlgoritmoGvns::perturbacionAleatoria(const Solucion& solucion) {
  * momento
  * @return Solucion solución después de haber sido perturbada
  */
-Solucion AlgoritmoGvns::perturbacion(const Solucion& solucion) {
+Solucion AlgoritmoGvns::perturbacion_(const Solucion& solucion) {
   ReinsercionEntre reinsercion_entre{solucion};
   return reinsercion_entre.explorarVecindario(problema_.getValoresArcos(), 10);
 }
@@ -78,7 +78,7 @@ Solucion AlgoritmoGvns::perturbacion(const Solucion& solucion) {
  * @param solucion solución que hemos obtenido hasta ese instante
  * @return Solucion solución después de haber sido modificada por el VND
  */
-Solucion AlgoritmoGvns::VND(const Solucion& solucion) {
+Solucion AlgoritmoGvns::VND_(const Solucion& solucion) {
   solucion_algoritmo_ = solucion;
   // Establecemos la l que indica el número de vecindarios
   int l{1};
@@ -166,9 +166,9 @@ Solucion AlgoritmoGvns::resolver() {
     // Repeat until k = kmax:
     do {
       // (a) Shaking
-      Solucion solucion_perturbada{perturbacion(solucion_actual)};
+      Solucion solucion_perturbada{perturbacion_(solucion_actual)};
       // (b) Local search by VND
-      Solucion solucion_vnd{VND(solucion_perturbada)};
+      Solucion solucion_vnd{VND_(solucion_perturbada)};
       // (c) move or not
       if (calcularTCTTotalMaquinas(solucion_actual,
                                    problema_.getValoresArcos()) >
@@ -203,9 +203,9 @@ Solucion AlgoritmoGvns::resolverMultiArranque() {
     // Repeat until k = kmax:
     do {
       // (a) Shaking
-      Solucion solucion_perturbada{perturbacion(solucion_actual)};
+      Solucion solucion_perturbada{perturbacion_(solucion_actual)};
       // (b) Local search by VND
-      Solucion solucion_vnd{VND(solucion_perturbada)};
+      Solucion solucion_vnd{VND_(solucion_perturbada)};
       // (c)move or not
       if (calcularTCTTotalMaquinas(solucion_actual,
                                    problema_.getValoresArcos()) >

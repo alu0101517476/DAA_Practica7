@@ -14,9 +14,11 @@ class AlgoritmoVoraz : public Algoritmo {
         solucion_algoritmo_{problema_.getNumeroMaquinas()} {};
   // Método que nos permite calcular el TCT total
   int calcularTCTTotal();
+  // Método que ejecuta el algoritmo voraz
+  Solucion resolver();
+  // getters
   Problema getProblema() { return problema_; }
   int getTCTTotal() { return solucion_algoritmo_.getSolucion().second; }
-  Solucion resolver();
 
  private:
   Problema problema_;

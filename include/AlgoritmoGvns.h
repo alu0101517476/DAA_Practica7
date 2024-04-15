@@ -17,6 +17,7 @@
 
 class AlgoritmoGvns : public Algoritmo {
  public:
+  // Constructores
   AlgoritmoGvns(const std::string& nombre_problema)
       : problema_{nombre_problema},
         solucion_algoritmo_{problema_.getNumeroMaquinas()} {}
@@ -24,16 +25,21 @@ class AlgoritmoGvns : public Algoritmo {
       : problema_{nombre_problema},
         solucion_algoritmo_{problema_.getNumeroMaquinas()},
         maximo_iteraciones_{maximo_iteraciones} {}
-  Solucion perturbacionAleatoria(const Solucion& solucion);
-  Solucion perturbacion(const Solucion& solucion);
+  // Métodos que ejecutan el algoritmo
   Solucion resolver();
   Solucion resolverMultiArranque();
-  Solucion VND(const Solucion& solucion);
   int calcularTCTTotal();
+  // getters
   Problema getProblema() { return problema_; }
   int getTCTTotal() { return solucion_algoritmo_.getSolucion().second; }
 
  private:
+  // Método que ejecuta el algoritmo VND
+  Solucion VND_(const Solucion& solucion);
+  // Métodos que realizan las perturbaciones
+  Solucion perturbacionAleatoria_(const Solucion& solucion);
+  Solucion perturbacion_(const Solucion& solucion);
+  // Atributos de la clase
   Solucion solucion_algoritmo_;
   int maximo_iteraciones_{200};
   Problema problema_;

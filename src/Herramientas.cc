@@ -104,5 +104,5 @@ int elegirEstructuraEntornoGrasp() {
  */
 void ayuda() {
   std::cout << "El uso del programa es el siguiente: " << std::endl;
-  std::cout << "./TCT ruta de la instancia del problema" << std::endl;
+  std::cout << "./TCT" << std::endl;
 }
