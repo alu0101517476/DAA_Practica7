@@ -1,5 +1,8 @@
 #include "../include/Algoritmos_vecindario/ReinsercionIntra.h"
 
+/**
+ * @brief Método que imprime la solución del problema
+ */
 void ReinsercionIntra::imprimirSolucion() {
   std::cout << solucion_fase_constructiva_.getSolucion().second << std::endl;
   for (int i{0}; i < solucion_fase_constructiva_.getSolucion().first.size(); ++i) {
@@ -11,6 +14,16 @@ void ReinsercionIntra::imprimirSolucion() {
   }
 }
 
+/**
+ * @brief Método privado que sirve para encontrar una solución inicial de la
+ * cual se parte para seguir explorando soluciones vecinas
+ * @param maquina máquina de la que se va a eliminar una tarea e insertarla en
+ * la misma máquina
+ * @param valores_arcos
+ * @return true en caso de que se encuentre una solución mejor que la que
+ * tenemos
+ * @return false en caso de que no se encuentre una solución mejor
+ */
 bool ReinsercionIntra::solucionEncontrada_(std::vector<int>& maquina,
                                            const Problema& problema) {
   int tct_maquina{calcularTCTMaquina(maquina, problema.getValoresArcos())};
@@ -30,6 +43,7 @@ bool ReinsercionIntra::solucionEncontrada_(std::vector<int>& maquina,
   }
   return false;
 }
+
 
 Solucion ReinsercionIntra::explorarVecindario(const Problema& problema,
                                               int numero_maximo_intentos) {

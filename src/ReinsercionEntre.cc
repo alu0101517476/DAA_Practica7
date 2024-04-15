@@ -1,16 +1,32 @@
 #include "../include/Algoritmos_vecindario/ReinsercionEntre.h"
 
+/**
+ * @brief Método que imprime la solución del problema
+ */
 void ReinsercionEntre::imprimirSolucion() {
   std::cout << solucion_fase_constructiva_.getSolucion().second << std::endl;
-  for (int i{0}; i < solucion_fase_constructiva_.getSolucion().first.size(); ++i) {
+  for (int i{0}; i < solucion_fase_constructiva_.getSolucion().first.size();
+       ++i) {
     std::cout << i << ": ";
-    for (const auto& tarea : solucion_fase_constructiva_.getSolucion().first[i]) {
+    for (const auto& tarea :
+         solucion_fase_constructiva_.getSolucion().first[i]) {
       if (tarea != 0) std::cout << tarea << " | ";
     }
     std::cout << std::endl;
   }
 }
 
+/**
+ * @brief Método privado que sirve para encontrar una solución inicial de la
+ * cual se parte para seguir explorando soluciones vecinas
+ * @param maquina1 maquina de la que se va a eliminar una tarea e insertarla en
+ * la máquina2
+ * @param maquina2 máquina en la que se va a insertar la tarea
+ * @param valores_arcos
+ * @return true en caso de que se encuentre una solución mejor que la que
+ * tenemos
+ * @return false en caso de que no se encuentre una solución mejor
+ */
 bool ReinsercionEntre::solucionEncontrada_(
     std::vector<int>& maquina1, std::vector<int>& maquina2,
     const std::vector<std::vector<int>>& valores_arcos) {
@@ -33,6 +49,14 @@ bool ReinsercionEntre::solucionEncontrada_(
   return false;
 }
 
+/**
+ * @brief Método sobre el cual se exploran las soluciones vecinas a partir de la
+ * solución inicial
+ * @param valores_arcos
+ * @param numero_maximo_intentos número máximo de intentos que se van a
+ * realizar, mientras no se encuentre una solución mejor
+ * @return Solucion
+ */
 Solucion ReinsercionEntre::explorarVecindario(
     const std::vector<std::vector<int>>& valores_arcos,
     int numero_maximo_intentos) {

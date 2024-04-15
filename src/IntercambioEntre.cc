@@ -1,5 +1,8 @@
 #include "../include/Algoritmos_vecindario/IntercambioEntre.h"
 
+/**
+ * @brief Método que imprime la solución obtenida
+ */
 void IntercambioEntre::imprimirSolucion() {
   std::cout << solucion_fase_constructiva_.getSolucion().second << std::endl;
   for (int i{0}; i < solucion_fase_constructiva_.getSolucion().first.size(); ++i) {

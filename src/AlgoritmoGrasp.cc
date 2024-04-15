@@ -1,5 +1,12 @@
 #include "../include/AlgoritmoGrasp.h"
 
+/**
+ * @brief Constructor de la clase, en el que dado el nombre del fichero que
+ * contiene el problema y el tipo de algoritmo que se va a utilizar, se
+ * inicializan los atributos de la clase
+ * @param nombre_problema nombre del fichero del problema
+ * @param opcion_algoritmo tipo de algoritmo que se va a utilizar
+ */
 AlgoritmoGrasp::AlgoritmoGrasp(const std::string& nombre_problema,
                                int opcion_algoritmo)
     : problema_{nombre_problema},
@@ -7,6 +14,15 @@ AlgoritmoGrasp::AlgoritmoGrasp(const std::string& nombre_problema,
   setEstructuraEntorno(opcion_algoritmo);
 }
 
+/**
+ * @brief Constructor de la clase, en el que dado el nombre del fichero que
+ * contiene el problema, el tipo de algoritmo que se va a utilizar y el número
+ * máximo de iteraciones que se van a realizar, se inicializan los atributos de
+ * la clase
+ * @param nombre_problema nombre del fichero del problema
+ * @param opcion_algoritmo tipo de algoritmo que se va a utilizar
+ * @param maximo_iteraciones número máximo de iteraciones
+ */
 AlgoritmoGrasp::AlgoritmoGrasp(const std::string& nombre_problema,
                                int opcion_algoritmo, int maximo_iteraciones)
     : problema_{nombre_problema},
@@ -16,8 +32,8 @@ AlgoritmoGrasp::AlgoritmoGrasp(const std::string& nombre_problema,
 }
 
 /**
- * @brief Método que calcula el TCT total de la solución
- * @return int TCT total
+ * @brief Método que calcula el TCT total dado el atributo "solucion_algoritmo_"
+ * @return int es el TCT total
  */
 int AlgoritmoGrasp::calcularTCTTotal() {
   int tct_total{0};
@@ -29,7 +45,9 @@ int AlgoritmoGrasp::calcularTCTTotal() {
 
 /**
  * @brief Fase constructiva del algoritmo GRASP que nos da una solución
- * apoyándonos en las soluciones que nos va dando el algoritmo voraz
+ * apoyándonos en las soluciones que nos va dando el algoritmo voraz, dándole un
+ * enfoque un poco más aleatorio, para no caer constantemente en la misma
+ * solución y tener distintas soluciones un poco más variadas
  * @return Solucion Solución después de haber hecho la fase constructiva
  */
 Solucion AlgoritmoGrasp::faseConstructiva() {
@@ -88,26 +106,35 @@ Solucion AlgoritmoGrasp::faseConstructiva() {
   return solucion_final;
 }
 
+/**
+ * @brief Método que asigna la estructura de entorno que se va a utilizar en el
+ * algoritmo
+ * @param opcion_algoritmo tipo de algoritmo que se va a utilizar
+ */
 void AlgoritmoGrasp::setEstructuraEntorno(int opcion_algoritmo) {
   switch (opcion_algoritmo) {
+    // Intercambio de tareas entre máquinas
     case 1: {
       movimiento_entre_ = new IntercambioEntre{solucion_algoritmo_};
       tipo_movimiento_ = 1;
       break;
     }
 
+    // Intercambio de tareas en la misma máquina
     case 2: {
       movimiento_intra_ = new IntercambioIntra{solucion_algoritmo_};
       tipo_movimiento_ = 0;
       break;
     }
 
+    // Reinserción de tareas en la misma máquina
     case 3: {
       movimiento_entre_ = new ReinsercionEntre{solucion_algoritmo_};
       tipo_movimiento_ = 1;
       break;
     }
 
+    // Reinserción de tareas en la misma máquina
     default: {  // opción 4
       movimiento_intra_ = new ReinsercionIntra{solucion_algoritmo_};
       tipo_movimiento_ = 0;
@@ -117,18 +144,18 @@ void AlgoritmoGrasp::setEstructuraEntorno(int opcion_algoritmo) {
 }
 
 /**
- * @brief Método que ejecuta el algoritmo con la fase constructiva y con la fase
- * de postprocesamiento para hallar una nueva solución
+ * @brief Método que ejecuta el algoritmo con las distintas fases del algoritmo
+ * para dar una solución al problema
  * @return Solucion solucion encontrada después de ejecutar el algoritmo
  */
 Solucion AlgoritmoGrasp::resolver() {
+  // Hallamos una solución inicial
   solucion_algoritmo_ = faseConstructiva();
-  (tipo_movimiento_ == 0) ? movimiento_intra_->setSolucion(solucion_algoritmo_)
-                          : movimiento_entre_->setSolucion(solucion_algoritmo_);
   int numero_intentos{0};
   for (int i{0}; i < 1000; ++i) {
     if (tipo_movimiento_ == 0) {
       movimiento_intra_->setSolucion(faseConstructiva());
+      // Fase de exploración de soluciones
       movimiento_intra_->explorarVecindario(problema_, 10);
       // Fase actualización
       if (calcularTCTTotal() >
@@ -152,6 +179,7 @@ Solucion AlgoritmoGrasp::resolver() {
         ++numero_intentos;
       }
     }
+    // Si se ha llegado al máximo de iteraciones, salimos del bucle
     if (numero_intentos == maximo_iteraciones_) {
       break;
     }

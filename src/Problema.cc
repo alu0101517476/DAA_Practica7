@@ -1,21 +1,11 @@
 #include "../include/Problema.h"
 
-std::vector<int> Problema::getTiempoProcesamientoTareas() const {
-  return tiempo_procesamiento_tareas_;
-}
-
-std::vector<std::vector<int>> Problema::getTiemposSetup() const {
-  return tiempos_setup_;
-}
-
-std::vector<std::vector<int>> Problema::getValoresArcos() const {
-  return valores_arcos_;
-}
-
-int Problema::getNumeroMaquinas() const { return numero_maquinas_; }
-
-int Problema::getNumeroTareas() const { return numero_tareas_; }
-
+/**
+ * @brief Constructor de la clase problema que a partir del nombre de un
+ * fichero, donde se encuentra una instancia del problema, lee los datos y los
+ * almacena en las variables privadas de la clase.
+ * @param nombre_fichero nombre del problema a leer
+ */
 Problema::Problema(const std::string& nombre_fichero) {
   nombre_fichero_ = nombre_fichero;
   std::ifstream fichero_problema{nombre_fichero, std::ios::in};
@@ -74,6 +64,29 @@ Problema::Problema(const std::string& nombre_fichero) {
   fichero_problema.close();
 }
 
+// getters
+std::vector<int> Problema::getTiempoProcesamientoTareas() const {
+  return tiempo_procesamiento_tareas_;
+}
+
+std::vector<std::vector<int>> Problema::getTiemposSetup() const {
+  return tiempos_setup_;
+}
+
+std::vector<std::vector<int>> Problema::getValoresArcos() const {
+  return valores_arcos_;
+}
+
+int Problema::getNumeroMaquinas() const { return numero_maquinas_; }
+
+int Problema::getNumeroTareas() const { return numero_tareas_; }
+
+/**
+ * @brief Sobrecarga del operador << para poder imprimir el problema
+ * @param os 
+ * @param problema problema a imprimir
+ * @return std::ostream& 
+ */
 std::ostream& operator<<(std::ostream& os, const Problema& problema) {
   std::cout << "n: " << problema.numero_tareas_ << std::endl;
   std::cout << "m: " << problema.numero_maquinas_ << std::endl;
