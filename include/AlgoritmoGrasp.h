@@ -23,15 +23,17 @@ class AlgoritmoGrasp : public Algoritmo {
   AlgoritmoGrasp(const std::string& nombre_problema, int opcion_algoritmo);
   AlgoritmoGrasp(const std::string& nombre_problema, int opcion_algoritmo, int maximo_iteraciones);
   int calcularTCTTotal();
-  // Método que realiza la fase constructiva
+  // Métodos que realizan la fase constructiva
   Solucion faseConstructiva();
+  Solucion faseConstructivaRepetitiva();
   Solucion getSolucion() { return solucion_algoritmo_; }
   Problema getProblema() { return problema_; }
   int getTCTTotal() { return solucion_algoritmo_.getSolucion().second; }
   // setters
   void setSolucion(const Solucion& solucion) { solucion_algoritmo_ = solucion; }
   void setEstructuraEntorno(int opcion_algoritmo);
-  // Método que ejecuta el algoritmo
+  // Métodos que ejecutan el algoritmo
+  Solucion resolverMultiarranque();
   Solucion resolver();
 
  private:

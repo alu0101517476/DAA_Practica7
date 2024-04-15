@@ -11,7 +11,7 @@
 
 int main() { 
   std::vector<std::string> nombres_ficheros{{"PMSP/I40j_2m_S1_1.txt", "PMSP/I40j_4m_S1_1.txt", "PMSP/I40j_6m_S1_1.txt", "PMSP/I40j_8m_S1_1.txt", "PMSP/Inst50j/I50j_2m_S1_1.txt", "PMSP/Inst60j/I60j_2m_S1_1.txt", "PMSP/Inst70j/I70j_2m_S1_1.txt"}};
-  // std::string nombre_fichero{argv[1]};
+  /*
   std::cout << "------------------------------------------------------------------------" << std::endl;
   std::cout << "\t\tAlgoritmo Voraz" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
@@ -28,13 +28,13 @@ int main() {
   }
   ////////////////////////////////////////////////////////
   std::cout << "------------------------------------------------------------------------" << std::endl;
-  std::cout << "\t\tAlgoritmo GRASP con Intercambio entre tareas" << std::endl;
+  std::cout << "\t\tAlgoritmo GRASP MULTIARRANQUE con Intercambio de tareas entre máquinas" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
     AlgoritmoGrasp grasp{nombres_ficheros[i], 1, 1000};
     auto start = std::chrono::high_resolution_clock::now();
-    grasp.resolver();
+    grasp.resolverMultiarranque();
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
@@ -42,13 +42,13 @@ int main() {
   }
   //////////////////////////////////////////////////////////
   std::cout << "------------------------------------------------------------------------" << std::endl;
-  std::cout << "\t\tAlgoritmo GRASP con Intercambio en la misma máquina" << std::endl;
+  std::cout << "\t\tAlgoritmo GRASP MULTIARRANQUE con Intercambio de tareas en la misma máquina" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
     AlgoritmoGrasp grasp{nombres_ficheros[i], 2, 1000};
     auto start = std::chrono::high_resolution_clock::now();
-    grasp.resolver();
+    grasp.resolverMultiarranque();
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
@@ -56,13 +56,13 @@ int main() {
   }
   //////////////////////////////////////////////////////////
   std::cout << "------------------------------------------------------------------------" << std::endl;
-  std::cout << "\t\tAlgoritmo GRASP con Reinserción entre máquinas" << std::endl;
+  std::cout << "\t\tAlgoritmo GRASP MULTIARRANQUE con Reinserción de tareas entre máquinas" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
     AlgoritmoGrasp grasp{nombres_ficheros[i], 3, 1000};
     auto start = std::chrono::high_resolution_clock::now();
-    grasp.resolver();
+    grasp.resolverMultiarranque();
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
@@ -70,13 +70,13 @@ int main() {
   }
   //////////////////////////////////////////////////////////
   std::cout << "------------------------------------------------------------------------" << std::endl;
-  std::cout << "\t\tAlgoritmo GRASP con Reinserción en la misma máquina" << std::endl;
+  std::cout << "\t\tAlgoritmo GRASP MULTIARRANQUE con Reinserción de tareas en la misma máquina" << std::endl;
   printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
   std::cout << "------------------------------------------------------------------------" << std::endl;
   for (int i{0}; i < nombres_ficheros.size(); ++i) {
     AlgoritmoGrasp grasp{nombres_ficheros[i], 3, 1000};
     auto start = std::chrono::high_resolution_clock::now();
-    grasp.resolver();
+    grasp.resolverMultiarranque();
     auto end = std::chrono::high_resolution_clock::now();
     auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
@@ -96,6 +96,64 @@ int main() {
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
     std::cout << std::endl;
   }
+  */
+  //////////////////////////////////////////////////////////
+  std::cout << "------------------------------------------------------------------------" << std::endl;
+  std::cout << "\t\tGRASP con Reinserción de tareas entre máquinas" << std::endl;
+  printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
+  std::cout << "------------------------------------------------------------------------" << std::endl;
+  for (int i{0}; i < nombres_ficheros.size(); ++i) {
+    AlgoritmoGrasp grasp{nombres_ficheros[i], 1};
+    auto start = std::chrono::high_resolution_clock::now();
+    grasp.resolver();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+    printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
+    std::cout << std::endl;
+  }
+  //////////////////////////////////////////////////////////
+  std::cout << "------------------------------------------------------------------------" << std::endl;
+  std::cout << "\t\tGRASP con Intercambio de tareas en la misma máquina" << std::endl;
+  printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
+  std::cout << "------------------------------------------------------------------------" << std::endl;
+  for (int i{0}; i < nombres_ficheros.size(); ++i) {
+    AlgoritmoGrasp grasp{nombres_ficheros[i], 2};
+    auto start = std::chrono::high_resolution_clock::now();
+    grasp.resolver();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+    printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
+    std::cout << std::endl;
+  }
+  //////////////////////////////////////////////////////////
+  std::cout << "------------------------------------------------------------------------" << std::endl;
+  std::cout << "\t\tGRASP con Reinserción de tareas en la misma máquina" << std::endl;
+  printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
+  std::cout << "------------------------------------------------------------------------" << std::endl;
+  for (int i{0}; i < nombres_ficheros.size(); ++i) {
+    AlgoritmoGrasp grasp{nombres_ficheros[i], 3};
+    auto start = std::chrono::high_resolution_clock::now();
+    grasp.resolver();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+    printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
+    std::cout << std::endl;
+  }
+  //////////////////////////////////////////////////////////
+  std::cout << "------------------------------------------------------------------------" << std::endl;
+  std::cout << "\t\tGRASP con Intercambio de tareas entre máquinas" << std::endl;
+  printf("%-25s %-5s %-13s %-11s %-11s\n", "Problema", "n", "Ejecución", "TCT", "CPU");
+  std::cout << "------------------------------------------------------------------------" << std::endl;
+  for (int i{0}; i < nombres_ficheros.size(); ++i) {
+    AlgoritmoGrasp grasp{nombres_ficheros[i], 4};
+    auto start = std::chrono::high_resolution_clock::now();
+    grasp.resolver();
+    auto end = std::chrono::high_resolution_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end - start).count();
+    printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), grasp.getProblema().getNumeroTareas(), (i + 1), grasp.getTCTTotal(), duration);
+    std::cout << std::endl;
+  }
+  /*
   //////////////////////////////////////////////////////////
   std::cout << "------------------------------------------------------------------------" << std::endl;
   std::cout << "\t\t\t\tGVNS MultiArranque" << std::endl;
@@ -124,5 +182,6 @@ int main() {
     printf("%-25s %-5d %-13d %-10d %-10ldµs", nombres_ficheros[i].c_str(), gvns.getProblema().getNumeroTareas(), (i + 1), gvns.getTCTTotal(), duration);
     std::cout << std::endl;
   }
+  */
   return 0; 
 }

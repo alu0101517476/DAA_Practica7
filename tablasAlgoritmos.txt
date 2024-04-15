@@ -1,88 +1,182 @@
 ------------------------------------------------------------------------
                 Algoritmo Voraz
-Problema                  n     Ejecución    TCT         CPU
+Problema                      n     Ejecución     TCT        CPU
 ------------------------------------------------------------------------
-PMSP/I40j_2m_S1_1.txt         40    1             15667      28856     µs
-PMSP/I40j_4m_S1_1.txt         40    2             8477       33160     µs
-PMSP/I40j_6m_S1_1.txt         40    3             6261       33947     µs
-PMSP/I40j_8m_S1_1.txt         40    4             5265       38945     µs
-PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             28477      55559     µs
-PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             37774      80489     µs
-PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             47570      46255     µs
+PMSP/I40j_2m_S1_1.txt         40    1             15667      29196     µs
+PMSP/I40j_4m_S1_1.txt         40    2             8477       13312     µs
+PMSP/I40j_6m_S1_1.txt         40    3             6261       10484     µs
+PMSP/I40j_8m_S1_1.txt         40    4             5265       11216     µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             28477      16826     µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             37774      29589     µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             47570      44678     µs
 ------------------------------------------------------------------------
-                Algoritmo GRASP con Intercambio entre tareas
-Problema                  n     Ejecución    TCT         CPU
+                Algoritmo GRASP con Intercambio de tareas entre máquinas
+Problema                      n     Ejecución     TCT        CPU
 ------------------------------------------------------------------------
-PMSP/I40j_2m_S1_1.txt         40    1             17451      6063646   µs
-PMSP/I40j_4m_S1_1.txt         40    2             9908       4436908   µs
-PMSP/I40j_6m_S1_1.txt         40    3             7162       4264884   µs
-PMSP/I40j_8m_S1_1.txt         40    4             5631       4368405   µs
-PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             31063      11734336  µs
-PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             40367      20978382  µs
-PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             53147      33274382  µs
+PMSP/I40j_2m_S1_1.txt         40    1             14101      21675083  µs
+PMSP/I40j_4m_S1_1.txt         40    2             7749       16263095  µs
+PMSP/I40j_6m_S1_1.txt         40    3             5734       15450303  µs
+PMSP/I40j_8m_S1_1.txt         40    4             4569       16151176  µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             25902      42023305  µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             34784      72417131  µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             45019      116149946 µs
 ------------------------------------------------------------------------
-                Algoritmo GRASP con Intercambio en la misma máquina
-Problema                  n     Ejecución    TCT         CPU
+                Algoritmo GRASP con Intercambio de tareas en la misma máquina
+Problema                      n     Ejecución     TCT        CPU
 ------------------------------------------------------------------------
-PMSP/I40j_2m_S1_1.txt         40    1             17802      34217984  µs
-PMSP/I40j_4m_S1_1.txt         40    2             10030      30091101  µs
-PMSP/I40j_6m_S1_1.txt         40    3             7348       19233449  µs
-PMSP/I40j_8m_S1_1.txt         40    4             5895       13321274  µs
-PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             30888      73104076  µs
-PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             44013      134412100 µs
-PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             54102      225355786 µs
+PMSP/I40j_2m_S1_1.txt         40    1             14623      119938705 µs
+PMSP/I40j_4m_S1_1.txt         40    2             8214       51379472  µs
+PMSP/I40j_6m_S1_1.txt         40    3             5836       35353223  µs
+PMSP/I40j_8m_S1_1.txt         40    4             4829       30144475  µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             26612      249180824 µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             36130      463980654 µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             46299      721074408 µs
 ------------------------------------------------------------------------
-                Algoritmo GRASP con Reinserción entre máquinas
-Problema                  n     Ejecución    TCT         CPU
+                Algoritmo GRASP con Reinserción de tareas entre máquinas
+Problema                      n     Ejecución     TCT        CPU
 ------------------------------------------------------------------------
-PMSP/I40j_2m_S1_1.txt         40    1             18953      7226366   µs
-PMSP/I40j_4m_S1_1.txt         40    2             10702      5440512   µs
-PMSP/I40j_6m_S1_1.txt         40    3             7534       13051383  µs
-PMSP/I40j_8m_S1_1.txt         40    4             5929       4332150   µs
-PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             32051      18412438  µs
-PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             43031      33758886  µs
-PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             55394      26988861  µs
+PMSP/I40j_2m_S1_1.txt         40    1             14971      18610073  µs
+PMSP/I40j_4m_S1_1.txt         40    2             8363       15190284  µs
+PMSP/I40j_6m_S1_1.txt         40    3             5965       14881684  µs
+PMSP/I40j_8m_S1_1.txt         40    4             4636       15285780  µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             27264      36247968  µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             37328      60906776  µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             46886      98513630  µs
 ------------------------------------------------------------------------
-                Algoritmo GRASP con Reinserción en la misma máquina
-Problema                  n     Ejecución    TCT         CPU
+                Algoritmo GRASP con Reinserción de tareas en la misma máquina
+Problema                      n     Ejecución     TCT        CPU
 ------------------------------------------------------------------------
-PMSP/I40j_2m_S1_1.txt         40    1             18566      10210666  µs
-PMSP/I40j_4m_S1_1.txt         40    2             10609      4414464   µs
-PMSP/I40j_6m_S1_1.txt         40    3             7581       6571157   µs
-PMSP/I40j_8m_S1_1.txt         40    4             6006       6067920   µs
-PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             32237      14015123  µs
-PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             42889      33583610  µs
-PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             53682      60221766  µs
+PMSP/I40j_2m_S1_1.txt         40    1             14571      19662915  µs
+PMSP/I40j_4m_S1_1.txt         40    2             8160       14935002  µs
+PMSP/I40j_6m_S1_1.txt         40    3             5972       15018311  µs
+PMSP/I40j_8m_S1_1.txt         40    4             4684       15271356  µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             27332      36924446  µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             36580      63307262  µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             47037      99448526  µs
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Algoritmo GRASP iterando 100 veces en la fase constructiva y con un límite de 50 intentos para las búsquedas locales
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ------------------------------------------------------------------------
-                Fase constructiva GRASP
-Problema                  n     Ejecución    TCT         CPU
+                GRASP con Reinserción de tareas entre máquinas
+Problema                      n     Ejecución     TCT        CPU
 ------------------------------------------------------------------------
-PMSP/I40j_2m_S1_1.txt         40    1             18986      9949      µs
-PMSP/I40j_4m_S1_1.txt         40    2             10038      11004     µs
-PMSP/I40j_6m_S1_1.txt         40    3             7429       11913     µs
-PMSP/I40j_8m_S1_1.txt         40    4             5955       13064     µs
-PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             32274      17994     µs
-PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             42288      30093     µs
-PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             53559      46268     µs
+PMSP/I40j_2m_S1_1.txt         40    1             14246      971163    µs
+PMSP/I40j_4m_S1_1.txt         40    2             7934       1009670   µs
+PMSP/I40j_6m_S1_1.txt         40    3             5886       1097917   µs
+PMSP/I40j_8m_S1_1.txt         40    4             4732       1197248   µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             27815      1958123   µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             35768      2978407   µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             46963      4691796   µs
+------------------------------------------------------------------------
+                GRASP con Intercambio de tareas en la misma máquina
+Problema                      n     Ejecución     TCT        CPU
+------------------------------------------------------------------------
+PMSP/I40j_2m_S1_1.txt         40    1             15720      1366748   µs
+PMSP/I40j_4m_S1_1.txt         40    2             8757       1276152   µs
+PMSP/I40j_6m_S1_1.txt         40    3             6336       1251469   µs
+PMSP/I40j_8m_S1_1.txt         40    4             5056       1372527   µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             28057      2769502   µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             36451      4362224   µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             48132      6861085   µs
+------------------------------------------------------------------------
+                GRASP con Reinserción de tareas en la misma máquina
+Problema                      n     Ejecución     TCT        CPU
+------------------------------------------------------------------------
+PMSP/I40j_2m_S1_1.txt         40    1             15581      1000824   µs
+PMSP/I40j_4m_S1_1.txt         40    2             8581       1062215   µs
+PMSP/I40j_6m_S1_1.txt         40    3             6096       1158819   µs
+PMSP/I40j_8m_S1_1.txt         40    4             4863       1203339   µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             28493      1783737   µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             38270      3005365   µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             47905      4746222   µs
+------------------------------------------------------------------------
+                GRASP con Intercambio de tareas entre máquinas
+Problema                      n     Ejecución     TCT        CPU
+------------------------------------------------------------------------
+PMSP/I40j_2m_S1_1.txt         40    1             14744      1369322   µs
+PMSP/I40j_4m_S1_1.txt         40    2             8274       1183447   µs
+PMSP/I40j_6m_S1_1.txt         40    3             6252       1185333   µs
+PMSP/I40j_8m_S1_1.txt         40    4             5049       1237050   µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             25987      2547280   µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             37293      4447438   µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             45805      7561604   µs
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        Algoritmo GRASP iterando 50 veces en la fase constructiva y con un límite de 5 intentos para las búsquedas locales
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+------------------------------------------------------------------------
+                GRASP con Reinserción de tareas entre máquinas
+Problema                      n     Ejecución     TCT        CPU
+------------------------------------------------------------------------
+PMSP/I40j_2m_S1_1.txt         40    1             15378      502721    µs
+PMSP/I40j_4m_S1_1.txt         40    2             8631       532515    µs
+PMSP/I40j_6m_S1_1.txt         40    3             5933       622515    µs
+PMSP/I40j_8m_S1_1.txt         40    4             4999       627356    µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             26463      955798    µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             38085      1553439   µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             46574      2403521   µs
+------------------------------------------------------------------------
+                GRASP con Intercambio de tareas en la misma máquina
+Problema                      n     Ejecución     TCT        CPU
+------------------------------------------------------------------------
+PMSP/I40j_2m_S1_1.txt         40    1             15554      603821    µs
+PMSP/I40j_4m_S1_1.txt         40    2             8678       565030    µs
+PMSP/I40j_6m_S1_1.txt         40    3             6262       584149    µs
+PMSP/I40j_8m_S1_1.txt         40    4             5091       629983    µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             28523      1053083   µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             37993      1955873   µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             47806      2714861   µs
+------------------------------------------------------------------------
+                GRASP con Reinserción de tareas en la misma máquina
+Problema                      n     Ejecución     TCT        CPU
+------------------------------------------------------------------------
+PMSP/I40j_2m_S1_1.txt         40    1             15284      520450    µs
+PMSP/I40j_4m_S1_1.txt         40    2             8627       561960    µs
+PMSP/I40j_6m_S1_1.txt         40    3             6235       592649    µs
+PMSP/I40j_8m_S1_1.txt         40    4             5121       645021    µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             28155      969894    µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             37861      1596624   µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             48070      2489539   µs
+------------------------------------------------------------------------
+                GRASP con Intercambio de tareas entre máquinas
+Problema                      n     Ejecución     TCT        CPU
+------------------------------------------------------------------------
+PMSP/I40j_2m_S1_1.txt         40    1             15106      579426    µs
+PMSP/I40j_4m_S1_1.txt         40    2             8193       587103    µs
+PMSP/I40j_6m_S1_1.txt         40    3             6203       622176    µs
+PMSP/I40j_8m_S1_1.txt         40    4             5012       686472    µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             26517      1138711   µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             36532      2043970   µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             45098      3140344   µs
+------------------------------------------------------------------------
+                                Fase constructiva GRASP
+Problema                      n     Ejecución     TCT        CPU
+------------------------------------------------------------------------
+PMSP/I40j_2m_S1_1.txt         40    1             17606      10644     µs
+PMSP/I40j_4m_S1_1.txt         40    2             10224      11769     µs
+PMSP/I40j_6m_S1_1.txt         40    3             6955       13183     µs
+PMSP/I40j_8m_S1_1.txt         40    4             6228       18080     µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             30076      18860     µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             42614      32861     µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             54867      48533     µs
 ------------------------------------------------------------------------
                                 GVNS MultiArranque
-Problema                  n     Ejecución    TCT         CPU
+Problema                      n     Ejecución     TCT        CPU
 ------------------------------------------------------------------------
-PMSP/I40j_2m_S1_1.txt         40    1             17848      204094627 µs
-PMSP/I40j_4m_S1_1.txt         40    2             10336      80153591  µs
-PMSP/I40j_6m_S1_1.txt         40    3             7019       46296106  µs
-PMSP/I40j_8m_S1_1.txt         40    4             5545       32633017  µs
-PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             31251      420103198 µs
-PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             41691      787540757 µs
-PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             54348      1281359768µs
+PMSP/I40j_2m_S1_1.txt         40    1             14329      206050054 µs
+PMSP/I40j_4m_S1_1.txt         40    2             7843       185317785 µs
+PMSP/I40j_6m_S1_1.txt         40    3             5729       112608845 µs
+PMSP/I40j_8m_S1_1.txt         40    4             4584       73286381  µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             25868      449007101 µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             35192      896529815 µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             45160      1484465273µs
 ------------------------------------------------------------------------
                                 GVNS
-Problema                  n     Ejecución    TCT         CPU
+Problema                      n     Ejecución     TCT        CPU
 ------------------------------------------------------------------------
-PMSP/I40j_2m_S1_1.txt         40    1             17211      162534302 µs
-PMSP/I40j_4m_S1_1.txt         40    2             9719       80501979  µs
-PMSP/I40j_6m_S1_1.txt         40    3             6915       49210410  µs
-PMSP/I40j_8m_S1_1.txt         40    4             6073       29744684  µs
-PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             32020      364859597 µs
-PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             42047      740206009 µs
-PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             54130      1515413850µs
+PMSP/I40j_2m_S1_1.txt         40    1             14317      19590980  µs
+PMSP/I40j_4m_S1_1.txt         40    2             7633       15117314  µs
+PMSP/I40j_6m_S1_1.txt         40    3             5697       9175256   µs
+PMSP/I40j_8m_S1_1.txt         40    4             4401       8057911   µs
+PMSP/Inst50j/I50j_2m_S1_1.txt 50    5             25736      181601596 µs
+PMSP/Inst60j/I60j_2m_S1_1.txt 60    6             34233      56526788  µs
+PMSP/Inst70j/I70j_2m_S1_1.txt 70    7             45336      271588257 µs
